@@ -1,23 +1,22 @@
 from django.views.generic.list import ListView
 from django.utils import timezone
 from django.views.generic.edit import UpdateView
-from .models import OperationsWithBooks
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
 from mysite.polls.forms import SignUpForm
 
+from .models import OperationsWithBooks
+
 
 class Add_book(UpdateView):
-
     model = OperationsWithBooks
     fields = ['name','autor', 'class', 'numIzd', 'nameIzd']
     template_name_suffix = '_add_book'
 
 
 class BooksList(ListView):
-
     model = OperationsWithBooks
 
     def get_context_data(self, **kwargs):
