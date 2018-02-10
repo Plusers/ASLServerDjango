@@ -10,7 +10,7 @@ from mysite.polls.forms import SignUpForm
 from .models import Books
 
 
-class Add_book(UpdateView):
+class Add_book():
     model = Books
     fields = ['name','autor', 'class', 'numIzd', 'nameIzd']
     template_name_suffix = '_add_book'
@@ -28,6 +28,7 @@ class BooksList(ListView):
 @login_required
 def admin_home(request):
     return render(request, 'menu.html')
+
 def users_home(request):
     return render(request, 'users_menu.html')
 
@@ -41,10 +42,10 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            if is_superuser == True:
-                return redirect('admin_home') 
+            if user.is_superuser == True:
+                return render('menu.html') 
             else:
-                return redirect('users_home')
+                return render('users_menu.html')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
