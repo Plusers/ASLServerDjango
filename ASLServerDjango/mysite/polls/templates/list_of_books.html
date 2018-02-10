@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Все книги</title>
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="static/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous">
+  </script>
+</head>
+
+
+<body>
+  <div class="header">
+    <h1>Все книги</h1>
+  </div>
+  <div id="books_list" style="margin-top: 20px;">
+  </div>
+
+  <script>
+    function add_book_to_list(book_id, name, author, clas, numIzd, nameIzd) {
+      $('#books_list').append('<div id="book_' + book_id + '" style="margin: 20px;"><div class="alert alert-info" role="alert">'+'Название:'+name+' Автор:'+author+' Класс:'+clas+' Номер издания:'+numIzd+' Название издания:'+nameIzd+'</div>')
+      }
+    
+  
+    
+    
+    $( document ).ready(function() {
+      $.get({
+          url:     "/api/books",
+          data:    "",
+          success: function(data) {
+              for (i in data["books"]) {
+                book = data["books"][i]
+                add_book_to_list(book["book_id"], book["name"], book['author'], book['clas'], book['numIzd'], book['nameIzd'])
+              }
+          },
+          error:   function(jqXHR, textStatus, errorThrown) {
+                alert("Error, status = " + textStatus + ", " +
+                      "error thrown: " + errorThrown
+                );
+          }
+      });
+    });
+  </script>
+</body>
+</html>

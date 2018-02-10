@@ -6,7 +6,8 @@ from mysite.polls import views as polls_views
 
 
 urlpatterns = [
-    url(r'^$', polls_views.home, name='home'),
+    url(r'^$', polls_views.admin_home, name='admin_home'),
+	url(r'^$', polls_views.users_home, name='users_home'),
 
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
