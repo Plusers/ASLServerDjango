@@ -12,16 +12,19 @@ from .models import Books
 
 class Add_book():
     model = Books
-    fields = ['name','autor', 'class', 'numIzd', 'nameIzd']
+    fields = ['name','autor', '_class', 'numIzd', 'nameIzd']
     template_name_suffix = '_add_book'
+
 
 
 class BooksList(ListView):
     model = Books
+    template_name = "books_list.html"
 
     def get_context_data(self, **kwargs):
         context = super(BooksList, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
+        context['books'] = Books.objects.all()
         return context
 
 
@@ -31,6 +34,7 @@ def admin_home(request):
 
 def users_home(request):
     return render(request, 'users_menu.html')
+
 
 
 def signup(request):

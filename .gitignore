@@ -96,3 +96,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+add
+# ASLServerDjango Ignore
+ASLServerDjango/static/
+ASLServerDjango/mysite/activate/
+ASLServerDjango/db.sqlite3 
