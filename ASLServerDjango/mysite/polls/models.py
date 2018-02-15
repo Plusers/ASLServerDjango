@@ -16,14 +16,11 @@ class Books(models.Model):
     pub_date = models.DateField('Дата добавления')
     borrower = models.ForeignKey(User,verbose_name='Выдать книгу')
     
-
-    print("hello!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     def make_qr_code(self):
-        return qrcode.show(qrcode.make(self.name, box_size=10, border=1))
-    img = qrcode.make('hello')# + "/" + self.author + "/" + self.clas +"/"+self.numIzd+"/"+self.nameIzd)
-    img.save("/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books/1.png")#self.author+self.clas+".png")
-    img.show()
-    print("goodbye#############################")    
+        img = qrcode.make(self.name + "/" + self.author + "/" + self.clas +"/"+self.numIzd+"/"+self.nameIzd)
+        img.save("/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books/"self.name+self.author+self.clas+".png")
+        img.show()
+      
     class Meta():
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
