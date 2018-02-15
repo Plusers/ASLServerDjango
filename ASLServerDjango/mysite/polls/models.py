@@ -14,7 +14,7 @@ class Books(models.Model):
     numIzd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Номер издания')
     nameIzd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название издания')
     pub_date = models.DateField('Дата добавления')
-    borrower = models.ForeignKey(User,verbose_name='Выдать книгу')
+    borrower = models.ForeignKey(User,default=None, null=True, verbose_name='Выдать книгу')
     
     def make_qr_code(self):
         img = qrcode.make(self.name + "/" + self.author + "/" + self.clas +"/"+self.numIzd+"/"+self.nameIzd)
