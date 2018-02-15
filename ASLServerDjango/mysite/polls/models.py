@@ -1,5 +1,6 @@
 import datetime
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 import qrcode
 
 from django.db import models
@@ -13,7 +14,7 @@ class Books(models.Model):
     numIzd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Номер издания')
     nameIzd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название издания')
     pub_date = models.DateField('Дата добавления')
-    #borrower = models.ForeignKey(verbose_name)
+    borrower = models.ForeignKey(User,verbose_name='Выдать книгу')
     
 
     print("hello!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
