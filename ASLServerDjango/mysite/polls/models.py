@@ -18,7 +18,7 @@ class Books(models.Model):
     
     def make_qr_code(self):
         img = qrcode.make(self.name + "/" + self.author + "/" + self.clas +"/"+self.numIzd+"/"+self.nameIzd)
-        img.save("/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books/"self.name+self.author+self.clas+".png")
+        img.save("/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books/"+self.name+self.author+self.clas+".png")
         img.show()
       
     class Meta():
