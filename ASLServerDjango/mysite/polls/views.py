@@ -12,7 +12,7 @@ from .models import Books
 
 class Add_book():
     model = Books
-    fields = ['name','autor', '_class', 'numIzd', 'nameIzd']
+    fields = ['name','autor', '_class', 'numIzd', 'nameIzd','borrower']
     template_name_suffix = '_add_book'
 
 

@@ -1,5 +1,5 @@
 import datetime
-
+from django.shortcuts import render, redirect
 import qrcode
 
 from django.db import models
@@ -13,17 +13,15 @@ class Books(models.Model):
     numIzd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Номер издания')
     nameIzd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название издания')
     pub_date = models.DateField('Дата добавления')
-    borrower = models.ForeignKey(null=True, default=None, verbose_name = 'Выдать книгу', to = 'Books')
+    #borrower = models.ForeignKey(verbose_name)
     
 
     print("hello!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    def hello(self):
-        print("зашел в функцию генерации+++++++++++++++++")
-        img = qrcode.make(self.name)# + "/" + self.author + "/" + self.clas +"/"+self.numIzd+"/"+self.nameIzd)
-        img.save("/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books/"+self.name+".png")#self.author+self.clas+".png")
-        img.show()
-        print("Закончил функцию генерации_____________________")
-        return null
+    def make_qr_code(self):
+        return qrcode.show(qrcode.make(self.name, box_size=10, border=1))
+    img = qrcode.make('hello')# + "/" + self.author + "/" + self.clas +"/"+self.numIzd+"/"+self.nameIzd)
+    img.save("/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books/1.png")#self.author+self.clas+".png")
+    img.show()
     print("goodbye#############################")    
     class Meta():
         verbose_name = 'Книга'
@@ -32,6 +30,7 @@ class Books(models.Model):
    
     
     def __str__(self):
+
         return str('Название: {}'.format(self.name)+', Автор: {}'.format(self.author)+', Класс: {}'.format(self.clas)+', Номер издания: {}'.format(self.numIzd)+', Название издания: {}'.format(self.nameIzd))
                 
 
