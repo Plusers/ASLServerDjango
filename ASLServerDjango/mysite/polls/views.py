@@ -20,11 +20,11 @@ class Add_book():
 class BooksList(ListView):
     model = Books
     template_name = "books_list.html"
-
-    def get_context_data(self, **kwargs):
+    
+    def get_context_data(self, request, **kwargs):
         context = super(BooksList, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
-        context['books'] = Books.objects.all()
+        context['books'] = Books.objects.filter(borrower=request.user)
         return context
 
 
