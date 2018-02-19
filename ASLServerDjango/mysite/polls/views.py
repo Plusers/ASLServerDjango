@@ -24,7 +24,7 @@ class BooksList(ListView):
     def get_context_data(self, request, **kwargs):
         context = super(BooksList, self).get_context_data(**kwargs)
         context['now'] = timezone.now()
-        context['books'] = Books.objects.filter(borrower=request.user)
+        context['books'] = Books.objects.filter(borrower = request.user)
         return context
 
 
