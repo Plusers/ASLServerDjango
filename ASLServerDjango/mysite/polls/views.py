@@ -23,7 +23,12 @@ class BooksList(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+<<<<<<< HEAD
         context['books'] = Books.objects.filter(borrower=self.request.user)
+=======
+        context['now'] = timezone.now()
+        context['books'] = Books.objects.filter(borrower = request.user)
+>>>>>>> 16be63f2ef86e7f2f6a56ddd48806a052af2c824
         return context
 
 
