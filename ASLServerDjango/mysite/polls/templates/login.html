@@ -19,6 +19,15 @@
 </html>
 
 {% block content %}
+<style>
+   .center {
+    width: 200px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: #fc0; /* Цвет фона */
+   }
+</style>
+<div class="center">
   <h2>Log in to My Site</h2>
   {% if form.errors %}
     <p style="color: red">Your username and password didn't match. Please try again.</p>
@@ -42,3 +51,4 @@
     <a href="{% url 'signup' %}">New to My Site? Sign up</a>
   </form>
 {% endblock %}
+</div>

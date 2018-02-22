@@ -4,6 +4,7 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from mysite.polls.forms import SignUpForm
 
@@ -16,25 +17,19 @@ class Add_book():
     template_name_suffix = '_add_book'
 
 
-
-class BooksList(ListView):
+class BooksList(LoginRequiredMixin, ListView):
     model = Books
     template_name = "books_list.html"
     
-    def get_context_data(self, request, **kwargs):
-        context = super(BooksList, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        context['books'] = Books.objects.filter(borrower = request.user)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = Books.objects.filter(borrower=self.request.user)
         return context
 
 
 @login_required
-def admin_home(request):
-    return render(request, 'menu.html')
-
 def users_home(request):
     return render(request, 'users_menu.html')
-
 
 
 def signup(request):

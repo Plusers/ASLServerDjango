@@ -1,6 +1,15 @@
 
 
 {% block content %}
+<style>
+   .center {
+    width: 200px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: #fc0; /* Цвет фона */
+   }
+</style>
+<div class="center">
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
@@ -19,3 +28,4 @@
     <button type="submit">Sign up</button>
   </form>
 {% endblock %}
+</div>
