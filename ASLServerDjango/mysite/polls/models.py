@@ -1,4 +1,5 @@
 import datetime
+from django.contrib import admin
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 import qrcode
@@ -8,6 +9,7 @@ from django.utils import timezone
 
 
 class Books(models.Model):
+    list_display = ["name", "id"]
     name = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название')
     author = models.CharField(blank=False, null=False, max_length=200, verbose_name='Автор')
     clas = models.CharField(blank=False, null=False, max_length=200, verbose_name='Класс')
@@ -21,4 +23,11 @@ class Books(models.Model):
         verbose_name_plural = 'Книги'
 
     def __str__(self):
-        return '{}, id:{}'.format(self.name, self.id)
+        return '{}, id:{}'.format(self.name, self.id)        
+class BookAdmin(admin.ModelAdmin):
+    list_filter = (
+        ('name', admin.RelatedOnlyFieldListFilter),
+    )
+class Generate(Books):
+    def generate(self):
+        print("hello",self.name)

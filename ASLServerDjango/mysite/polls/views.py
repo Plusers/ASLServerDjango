@@ -5,16 +5,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+import qrcode
 from mysite.polls.forms import SignUpForm
 
-from .models import Books
+from .models import Books, Generate
 
 
 class Add_book():
     model = Books
     fields = ['name','autor', '_class', 'numIzd', 'nameIzd','borrower']
     template_name_suffix = '_add_book'
+    generate()
+
+
 
 
 class BooksList(LoginRequiredMixin, ListView):
@@ -23,12 +26,8 @@ class BooksList(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-<<<<<<< HEAD
-        context['books'] = Books.objects.filter(borrower=self.request.user)
-=======
         context['now'] = timezone.now()
-        context['books'] = Books.objects.filter(borrower = request.user)
->>>>>>> 16be63f2ef86e7f2f6a56ddd48806a052af2c824
+        context['books'] = Books.objects.filter(borrower = self.request.user)
         return context
 
 
