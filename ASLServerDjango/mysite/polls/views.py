@@ -8,15 +8,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 import qrcode
 from mysite.polls.forms import SignUpForm
 
-from .models import Books, Generate
+from .models import Books
 
 
 class Add_book():
     model = Books
-    fields = ['name','autor', '_class', 'numIzd', 'nameIzd','borrower']
+    fields = ['name','autor', '_class', 'num_izd', 'name_izd','borrower']
     template_name_suffix = '_add_book'
-    generate()
 
+
+#class GenerateQrCode():
+def gen(request, book_id):
+    book = Books.objects.get(pk=book_id)
+    filename = book.generate()
+    # if request.method == 'POST':
+    #     Books.generate()
+    return render(request, 'generate_qr.html')
 
 
 

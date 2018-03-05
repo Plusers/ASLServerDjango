@@ -18,16 +18,26 @@ class Books(models.Model):
     pub_date = models.DateField('Дата добавления')
     borrower = models.ForeignKey(User, blank=True, default=None, null=True, verbose_name='Выдать книгу')
 
+    def generate(self):
+        filename = "./qr-books/{}.png".format(self.name)
+        book_id= str(self.id)
+        img_books = qrcode.make("Название: "+self.name+"/Автор: "+self.author+"/Класс: "+self.clas+"/ID: "+book_id)
+        img_books.save(filename)
+        img_books.show()
+        return filename
+
+
     class Meta():
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
 
     def __str__(self):
-        return '{}, id:{}'.format(self.name, self.id)        
+        return '{}, id:{}'.format(self.name, self.id) 
+
+
 class BookAdmin(admin.ModelAdmin):
     list_filter = (
         ('name', admin.RelatedOnlyFieldListFilter),
     )
-class Generate(Books):
-    def generate(self):
-        print("hello",self.name)
+
+   
