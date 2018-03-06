@@ -10,21 +10,10 @@ from mysite.polls.forms import SignUpForm
 
 from .models import Books
 
-
-class Add_book():
-    model = Books
-    fields = ['name','autor', '_class', 'num_izd', 'name_izd','borrower']
-    template_name_suffix = '_add_book'
-
-
-#class GenerateQrCode():
-def gen(request, book_id):
+def generate_qr(request, book_id):
     book = Books.objects.get(pk=book_id)
     filename = book.generate()
-    # if request.method == 'POST':
-    #     Books.generate()
     return render(request, 'generate_qr.html')
-
 
 
 class BooksList(LoginRequiredMixin, ListView):
@@ -33,7 +22,6 @@ class BooksList(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
         context['books'] = Books.objects.filter(borrower = self.request.user)
         return context
 

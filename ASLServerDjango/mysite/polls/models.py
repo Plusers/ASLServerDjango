@@ -9,7 +9,6 @@ from django.utils import timezone
 
 
 class Books(models.Model):
-    list_display = ["name", "id"]
     name = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название')
     author = models.CharField(blank=False, null=False, max_length=200, verbose_name='Автор')
     clas = models.CharField(blank=False, null=False, max_length=200, verbose_name='Класс')
@@ -23,9 +22,7 @@ class Books(models.Model):
         book_id= str(self.id)
         img_books = qrcode.make("Название: "+self.name+"/Автор: "+self.author+"/Класс: "+self.clas+"/ID: "+book_id)
         img_books.save(filename)
-        img_books.show()
         return filename
-
 
     class Meta():
         verbose_name = 'Книга'
@@ -33,11 +30,4 @@ class Books(models.Model):
 
     def __str__(self):
         return '{}, id:{}'.format(self.name, self.id) 
-
-
-class BookAdmin(admin.ModelAdmin):
-    list_filter = (
-        ('name', admin.RelatedOnlyFieldListFilter),
-    )
-
    
