@@ -4,6 +4,82 @@
 		"selected_items":
 		[
 			[
+				"bo",
+				"book_id"
+			],
+			[
+				"generate",
+				"generate_qr"
+			],
+			[
+				"b",
+				"Books"
+			],
+			[
+				"ge",
+				"Generate"
+			],
+			[
+				"boo",
+				"Books"
+			],
+			[
+				"suu",
+				"summ_of_column"
+			],
+			[
+				"co",
+				"countcol"
+			],
+			[
+				"summ",
+				"summ_of_column"
+			],
+			[
+				"sum",
+				"sum_of_column"
+			],
+			[
+				"su",
+				"sum_of_column"
+			],
+			[
+				"lo",
+				"login"
+			],
+			[
+				"ur",
+				"urls"
+			],
+			[
+				"make",
+				"make_qr_code"
+			],
+			[
+				"staic",
+				"Static"
+			],
+			[
+				"ma",
+				"make_qr_code"
+			],
+			[
+				"u",
+				"user"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"t",
+				"take_book"
+			],
+			[
+				"Bo",
+				"borrover"
+			],
+			[
 				"nu",
 				"numIzd"
 			],
@@ -26,10 +102,6 @@
 			[
 				"admin",
 				"admin_home"
-			],
-			[
-				"boo",
-				"bookslist"
 			],
 			[
 				"o",
@@ -56,10 +128,6 @@
 				"_class"
 			],
 			[
-				"lo",
-				"logout"
-			],
-			[
 				"list",
 				"list_of_books"
 			]
@@ -68,10 +136,19 @@
 	"buffers":
 	[
 		{
-			"file": "ASLServerDjango/mysite/polls/views.py",
+			"file": "ASLServerDjango/mysite/settings.py",
 			"settings":
 			{
-				"buffer_size": 1584,
+				"buffer_size": 3198,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ASLServerDjango/mysite/polls/models.py",
+			"settings":
+			{
+				"buffer_size": 1368,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -80,42 +157,42 @@
 			"file": "ASLServerDjango/mysite/urls.py",
 			"settings":
 			{
-				"buffer_size": 722,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ASLServerDjango/mysite/polls/models.py",
-			"settings":
-			{
-				"buffer_size": 1975,
+				"buffer_size": 645,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ASLServerDjango/mysite/settings.py",
+			"file": "ASLServerDjango/mysite/polls/urls.py",
 			"settings":
 			{
-				"buffer_size": 3120,
+				"buffer_size": 509,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ASLServerDjango/mysite/polls/admin.py",
+			"file": "ASLServerDjango/mysite/polls/forms.py",
 			"settings":
 			{
-				"buffer_size": 88,
+				"buffer_size": 470,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ASLServerDjango/mysite/polls/templates/generate_qr.html",
+			"settings":
+			{
+				"buffer_size": 222,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ASLServerDjango/mysite/polls/templates/operationswithbooks_add_book.html",
+			"file": "ASLServerDjango/mysite/polls/views.py",
 			"settings":
 			{
-				"buffer_size": 120,
+				"buffer_size": 1604,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -124,16 +201,25 @@
 			"file": "ASLServerDjango/mysite/polls/templates/books_list.html",
 			"settings":
 			{
-				"buffer_size": 485,
+				"buffer_size": 610,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "ASLServerDjango/mysite/polls/templates/base.html",
+			"file": "ASLServerDjango/mysite/polls/templates/users_menu.html",
 			"settings":
 			{
-				"buffer_size": 1388,
+				"buffer_size": 2002,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 1321,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -180,33 +266,52 @@
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates"
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/static",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/qr-books"
 	],
 	"file_history":
 	[
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/given_books_list.html",
+		"/home/vladislav/Документы/ASL/наш проект.txt",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/admin.py",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/operationswithbooks_add_book.html",
 		"/home/vladislav/Документы/ASLServer/ASLServer/db.py",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/add_books.html",
+		"/home/vladislav/Документы/qr_scanner.py",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/login.html",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/signup.html",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/base.html",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/users_menu.html",
+		"/home/vladislav/Документы/django-qrcode-master/manage.py",
+		"/home/vladislav/Документы/School/proga/trexmernmassive.cpp",
+		"/home/vladislav/Документы/School/proga/1_03_2018.cpp",
+		"/home/vladislav/Документы/School/proga/dz_na_8_04_2018.cpp",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/took_book.html",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/urls.py",
 		"/home/vladislav/Документы/ASLServerDjango/.gitignore",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/models.py",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/urls.py",
+		"/home/vladislav/Документы/School/proga/results.doc",
+		"/home/vladislav/Документы/QRCodeViewer.py",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/forms.py",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/apps.py",
+		"/home/vladislav/Документы/School/proga/double_massive.cpp",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/urls.py",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/give_books_list.html",
+		"/home/vladislav/Документы/test.py",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/models.py",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/menu.html",
+		"/home/vladislav/Документы/School/proga/test.cpp",
+		"/home/vladislav/Документы/School/proga/results.cpp",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/given_books_list.html",
+		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/add_books.html",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/settings.py",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/views.py",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/admin.py",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/urls.py",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/home.html",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/base.html",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/apps.py",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/mysite/urls.py",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/mysite/settings.py",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/mysite/wsgi.py",
-		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/signup.html",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/polls/detail.html",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/polls/index.html",
 		"/home/vladislav/Документы/ASLServerDjango/ASLServerDjango/mysite/polls/templates/polls/operationswithbooks_add_book.html",
 		"/home/vladislav/Документы/mysite/polls/tests.py",
-		"/home/vladislav/Документы/test.py",
 		"/home/vladislav/Документы/simple-scanner-master/scanner.py",
 		"/home/vladislav/Документы/mysite/polls/urls.py",
 		"/home/vladislav/Документы/mysite/polls/apps.py",
@@ -235,7 +340,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 21.0
 	},
 	"find_in_files":
 	{
@@ -249,6 +354,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"filename",
+			"search",
+			"sum$",
+			"#include <iostream>\n\nusing namespace std;\nint main()\n{\n\tint x[5][5];\n\tint z=0;\n\tfor (int i=0;i<3;i++)\n\t{\n\t\tfor (int j=0;j<5;j++)\n\t\t{\n\t\t\tx[i][j]=z;\n\t\t\tz++;\n\t\t\tcout<<x[i][j]<<\" \"\n\t\t}\n\t\tcout<<' '<<endl;\n\t}\n}"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -266,24 +375,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "ASLServerDjango/mysite/polls/views.py",
+					"file": "ASLServerDjango/mysite/settings.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1584,
+						"buffer_size": 3198,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								801,
-								801
+								2542,
+								2542
 							]
 						],
 						"settings":
@@ -293,57 +402,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 78.0,
+						"translation.y": 1280.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "ASLServerDjango/mysite/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 722,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								717,
-								717
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "ASLServerDjango/mysite/polls/models.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1975,
+						"buffer_size": 1368,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								663,
-								663
+								1166,
+								1166
 							]
 						],
 						"settings":
@@ -360,50 +439,48 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "ASLServerDjango/mysite/settings.py",
+					"buffer": 2,
+					"file": "ASLServerDjango/mysite/urls.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3120,
+						"buffer_size": 645,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2940,
-								2940
+								295,
+								295
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
-						"translation.x": 0.0,
-						"translation.y": 1287.0,
+						"translation.x": 4.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "ASLServerDjango/mysite/polls/admin.py",
+					"buffer": 3,
+					"file": "ASLServerDjango/mysite/polls/urls.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 88,
+						"buffer_size": 509,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								85,
-								85
+								480,
+								480
 							]
 						],
 						"settings":
@@ -414,50 +491,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"file": "ASLServerDjango/mysite/polls/templates/operationswithbooks_add_book.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 120,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								112,
-								112
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "ASLServerDjango/mysite/polls/templates/books_list.html",
+					"buffer": 4,
+					"file": "ASLServerDjango/mysite/polls/forms.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 485,
+						"buffer_size": 470,
 						"regions":
 						{
 						},
@@ -465,35 +508,131 @@
 						[
 							[
 								0,
-								484
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 8,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
 				{
-					"buffer": 7,
-					"file": "ASLServerDjango/mysite/polls/templates/base.html",
+					"buffer": 5,
+					"file": "ASLServerDjango/mysite/polls/templates/generate_qr.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1388,
+						"buffer_size": 222,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								917,
-								917
+								222,
+								222
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 27.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "ASLServerDjango/mysite/polls/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1604,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								436,
+								436
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "ASLServerDjango/mysite/polls/templates/books_list.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 610,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7,
+								7
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "ASLServerDjango/mysite/polls/templates/users_menu.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2002,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1314,
+								1314
 							]
 						],
 						"settings":
@@ -503,10 +642,38 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 663.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": ".gitignore",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1294,
+								1294
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1014.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -540,7 +707,7 @@
 		"cols":
 		[
 			0.0,
-			0.5,
+			0.56905370844,
 			1.0
 		],
 		"rows":
@@ -553,6 +720,10 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 25.0
 	},
 	"pinned_build_system": "",
 	"project": "server.sublime-project",
@@ -591,6 +762,21 @@
 	"selected_group": 0,
 	"settings":
 	{
+		"last_automatic_layout":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		]
 	},
 	"show_minimap": true,
 	"show_open_files": false,
@@ -600,5 +786,6 @@
 	"status_bar_visible": true,
 	"template_settings":
 	{
+		"max_columns": 2
 	}
 }

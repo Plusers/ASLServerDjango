@@ -100,4 +100,10 @@ add
 # ASLServerDjango Ignore
 ASLServerDjango/static/
 ASLServerDjango/mysite/activate/
-ASLServerDjango/db.sqlite3 
+ASLServerDjango/db.sqlite3
+ASLServerDjango/qr-books
+db.sqlite3
+qr-books/
+/server.sublime-workspace
+
+
