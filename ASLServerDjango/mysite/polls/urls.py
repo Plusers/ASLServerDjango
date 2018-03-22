@@ -9,7 +9,7 @@ from .views import (
 
 urlpatterns = [
     url(r'^$', users_home, name='menu'),
-    url(r'^list/$', BooksList.as_view(), name='books-list'),
+    url(r'^list/$', BooksList, name='books-list'),
         
     # url(r'^add/$', BooksList.as_view(), name='bookslist'),
 

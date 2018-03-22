@@ -10,12 +10,13 @@ from mysite.polls.forms import SignUpForm
 
 from .models import Books
 
+@login_required
 def generate_qr(request, book_id):
-    book = Books.objects.get(pk=book_id)
-    filename = book.generate()
-    return render(request, 'generate_qr.html')
-
-
+    book_id = Books.objects.get(pk=book_id)
+    filename = book_id.generate()
+    return render(request, 'generate_qr.html', {'filename': filename})
+    
+@login_required
 class BooksList(LoginRequiredMixin, ListView):
     model = Books
     template_name = "books_list.html"

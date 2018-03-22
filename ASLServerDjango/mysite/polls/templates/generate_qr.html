@@ -4,10 +4,9 @@
 
 <h1  style="color:white;" align = "center">QR-Codes</h1>
 
-{% for book in books %}
-<img src="{{book.id}}"/>
-{% empty %}
-    <li>No codes yet.</li>
-{% endfor %}
+<div>
+    {%filename%}
+
+</div>
 
 {% endblock %}
