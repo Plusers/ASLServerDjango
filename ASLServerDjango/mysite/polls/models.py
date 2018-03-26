@@ -31,4 +31,4 @@ class Books(models.Model):
 
     def __str__(self):
         return '{}, id:{}'.format(self.name, self.id) 
-   
+    
