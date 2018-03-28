@@ -6,11 +6,13 @@
     <div style="margin: 20px;">
     	<div class="alert alert-info" role="alert">
     	    <div style="font-family: Georgia, Serif">
-    		Название: {{ book.name }} <br/>    		Автор: {{ book.author }}  <br/> 
+    		Название: {{ book.name }} <br/>    		
+            Автор: {{ book.author }}  <br/> 
     		Класс: {{ book.clas }}  <br/>
     		Номер издания: {{ book.num_izd }}  <br/>
     		Название издания: {{ book.name_izd }} <br/>
-            ID: {{ book.id }} 
+            ID: {{ book.id }} <br/>
+            <a href="/books/qr-code/{{book.id}}">Подробнее</a>
             </div>
     	</div>
     </div>
