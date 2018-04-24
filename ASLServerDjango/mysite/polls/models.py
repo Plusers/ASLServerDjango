@@ -18,7 +18,7 @@ class Books(models.Model):
     borrower = models.ForeignKey(User, blank=True, default=None, null=True, verbose_name='Выдать книгу')
 
     def generate(self):
-        filename = "./mysite/polls/templates/qr-books/{}.png".format(self.id)
+        filename = "./qr-books/{}.png".format(self.id)
         book_id= str(self.id)
         user = str(self.borrower)
         img_books = qrcode.make("ID: "+book_id+"/ Выдана: "+user)

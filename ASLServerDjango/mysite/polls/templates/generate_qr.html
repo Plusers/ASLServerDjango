@@ -4,9 +4,10 @@
 
 <h1  style="color:white;" align = "center">QR-Codes</h1>
 
+
 <div>
-    {{filename}}
-    <img src={{ filename }} alt="Smiley face" height="42" width="42">
+    {% load static %}
+    <img src="{% static "27.png" %}" alt="Данное изображение не открывается"/>
 </div>
 
 {% endblock %}

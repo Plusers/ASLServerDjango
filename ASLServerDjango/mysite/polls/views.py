@@ -13,7 +13,7 @@ from .models import Books
 
 @login_required
 def generate_qr(request, book_id):
-    os.makedirs("./mysite/polls/templates/qr-books", exist_ok=True)
+    os.makedirs("./qr-books", exist_ok=True)
     book_id = Books.objects.get(pk=book_id)
     filename = book_id.generate()
     return render(request, 'generate_qr.html', {'filename': filename})
