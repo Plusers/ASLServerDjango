@@ -15,7 +15,7 @@ class Books(models.Model):
     num_izd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Номер издания')
     name_izd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название издания')
     pub_date = models.DateField('Дата добавления')
-    borrower = models.ForeignKey(User, blank=True, default=None, null=True, verbose_name='Выдать книгу')
+    borrower = models.ForeignKey(User, blank=True, default=None, null=True, verbose_name='Выдать книгу',on_delete = models.CASCADE)
 
     def generate(self):
         filename = "./qr-books/{}.png".format(self.id)

@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', signup, name='signup'),
 
-    url(r'^books/', include('mysite.polls.urls', namespace='books')),
+    url(r'^books/', include('mysite.polls.urls'), name='books'),
 
     url(r'^admin/', admin.site.urls),
 ]
