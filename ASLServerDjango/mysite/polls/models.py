@@ -15,6 +15,7 @@ class Books(models.Model):
     num_izd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Номер издания')
     name_izd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название издания')
     pub_date = models.DateField('Дата добавления')
+    quantity = models.IntegerField(blank=False, null=False, verbose_name='Количество книг')
     borrower = models.ForeignKey(User, blank=True, default=None, null=True, verbose_name='Выдать книгу')
 
     def generate(self):
@@ -23,6 +24,7 @@ class Books(models.Model):
         user = str(self.borrower)
         img_books = qrcode.make("ID: "+book_id+"/ Выдана: "+user)
         img_books.save(filename)
+        img_books.show()
         return filename
 
     class Meta():
@@ -30,5 +32,5 @@ class Books(models.Model):
         verbose_name_plural = 'Книги'
 
     def __str__(self):
-        return '{}, id:{}'.format(self.name, self.id) 
+        return 'id:{}, Название:{}, Количество:{}'.format(self.id, self.name,self.quantity) 
     
