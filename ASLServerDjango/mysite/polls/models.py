@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 import qrcode
+from django.urls import reverse
 
 from django.db import models
 from django.utils import timezone
@@ -26,7 +27,8 @@ class Books(models.Model):
         img_books.save(filename)
         img_books.show()
         return filename
-
+    def get_absolute_url(self):
+        return reverse('BooksList')
     class Meta():
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'

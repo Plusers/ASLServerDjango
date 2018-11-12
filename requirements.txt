@@ -8,3 +8,4 @@ django==1.11.9
 pytz==2017.3              # via django, pytz
 qrcode==5.3
 six==1.11.0               # via qrcode, six
+Pillow==2.0.0

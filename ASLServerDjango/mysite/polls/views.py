@@ -27,8 +27,9 @@ class BooksList(LoginRequiredMixin, ListView):
     template_name = "books_list.html"
     def get_context_data(self, **kwargs):
         #
-        context = super().get_context_data(**kwargs)
-        context['books'] = Books.objects.filter(borrower = self.request.user)
+        context = super(BooksList, self).get_context_data(**kwargs)
+        #context = super().get_context_data(**kwargs)
+        #context['books'] = Books.objects.filter(borrower = self.request.user)
         return context
 
 
