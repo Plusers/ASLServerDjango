@@ -1,0 +1,18 @@
+<h1>Пользователь:</h1>
+<h1>ID: {{ user_id.id }}</h1>
+<h1>Имя: {{ user_id.username }}</h1>
+<h1>Фамилия: {{ user_id.fename }}</h1>
+<h1>Отчество: {{ user_id.third_name}}
+<h1>Класс: {{ user_id.clas }}</h1>
+<h2>Задолжностей: {{ user_id.debt }}</h2>
+<h2>Выдана книга: {{ user_id.how_books }}</h2>
+<h2>Выдана книга: {{ user_id.b }}</h2>
+<h2>Выдана книга: {{ user_id.c }}</h2>
+
+
+<form action="/users/give_book/">
+    <input type="submit" value="Выдать книгу" name = "send" />
+</form>
+<form action="/users/list/">
+    <input type="submit" value="Назад" />
+</form>

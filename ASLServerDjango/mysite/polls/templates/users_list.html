@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1  style="color:white;" align = "center">Ученики</h1>
+<form action="{% url 'users_search' %}" method="GET">
+    <input type="text" name="q" />
+    <button type="submit">Поиск по фамилии</button>
+</form>
+
+{% include "results_search.html" %}
+
+{% for place in object_list %}
+    <div style="margin: 20px;">
+    	<div class="alert alert-info" role="alert">
+    	    <div style="color:black; font-family: Georgia, Serif">
+            ID: {{ place.id }}<br/>
+    		Имя: {{ place.username }} <br/>    		
+            Фамилия: {{ place.fename }}  <br/> 
+            Отчество: {{ place.third_name }} <br/>
+    		Класс: {{ place.clas }}  <br/>
+            <a href="/users/information/{{place.id}}">Подробнее</a>
+            </div>
+    	</div>
+    </div>
+{% empty %}
+    <li>Учеников нет.</li>
+{% endfor %}
+
+{% endblock %}
