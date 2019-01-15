@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='alert alert-info'>
+<h1>Удалить книгу {{form}}</h1>
+
+<p>Вы точно хотите удалить эту книгу? {{ form }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Да, удалить.">
+</form>
+</div>
+{% endblock %}

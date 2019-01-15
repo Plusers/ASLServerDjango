@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base1.html" %}
 
 {% block content %}
 <style>
@@ -10,12 +10,11 @@
    }
 </style>
 <div class="center">
-  <h2>Log in to ASL</h2>
-  <a href="{% url 'login' %}">login</a> / <a href="{% url 'signup' %}">signup</a>
+  <h2>Авторизация в Школьной Библиотеке</h2>
   {% if form.errors %}
-    <p style="color: red">Your username and password didn't match. Please try again.</p>
+    <p style="color: red">Ваш логин или пароль введины неверно. Попробуйте еще раз.</p>
   {% endif %}
-  <form method="post">
+  <form  method="post">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}" />
     {% for field in form %}
@@ -30,8 +29,8 @@
         {% endif %}
       </p>
     {% endfor %}
-    <button type="submit">Log in</button>
-    <a href="/signup/">New to My Site? Sign up</a>
+    <button type="submit">Войти</button>
+    <a href="/signup/">Регистрация</a>
   </form>
 </div> 
 {% endblock %}

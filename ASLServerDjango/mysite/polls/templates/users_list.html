@@ -1,29 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1  style="color:white;" align = "center">Ученики</h1>
-<form action="{% url 'users_search' %}" method="GET">
-    <input type="text" name="q" />
-    <button type="submit">Поиск по фамилии</button>
-</form>
+{% if request.user.is_superuser %}
+    <h1  style="color:white;" align = "center">Ученики</h1>
+    <form action="{% url 'users_search' %}" method="GET">
+        <input type="text" name="fename" />
+        <button style="border-radius: 20px;" type="submit">Поиск по фамилии</button>
+        <input type="text" name="nickname" />
+        <button style="border-radius: 20px;" type="submit">Поиск по никнейму</button>
+    </form>
 
-{% include "results_search.html" %}
+    {% include "results_search.html" %}
 
-{% for place in object_list %}
-    <div style="margin: 20px;">
-    	<div class="alert alert-info" role="alert">
-    	    <div style="color:black; font-family: Georgia, Serif">
-            ID: {{ place.id }}<br/>
-    		Имя: {{ place.username }} <br/>    		
-            Фамилия: {{ place.fename }}  <br/> 
-            Отчество: {{ place.third_name }} <br/>
-    		Класс: {{ place.clas }}  <br/>
-            <a href="/users/information/{{place.id}}">Подробнее</a>
-            </div>
-    	</div>
+    {% for place in object_list %}
+        <div style="margin: 20px;">
+        	<div class="alert alert-info" role="alert">
+        	    <div style="color:black; font-family: Georgia, Serif">
+                ID: {{ place.id }}<br/>
+                Никнейм:{{place.username}}</br>
+        		Имя: {{ place.first_name }} <br/>    		
+                Фамилия: {{ place.last_name }}  <br/> 
+                <a style="border-radius: 20px;" href="/users/information/{{place.id}}">Подробнее</a>
+                </div>
+        	</div>
+        </div>
+    {% empty %}
+        <li>Учеников нет.</li>
+    {% endfor %}
+{% else %}
+    <div class='alert alert-info'>
+        <h1>К сожалению вы не обладаете правами администратора</h1>
     </div>
-{% empty %}
-    <li>Учеников нет.</li>
-{% endfor %}
-
+{% endif %}
 {% endblock %}

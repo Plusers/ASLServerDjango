@@ -1,5 +1,17 @@
-<form action="" method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
-    
-</form>
+{% extends "base.html" %}
+{% block content %}
+{% if request.user.is_superuser %}
+<div class='alert alert-info'>
+	<form method="post">
+		{% csrf_token %}
+	    {{ form.as_p }}
+	    <button style="border-radius: 20px;" href = '/' type = 'submit'>Добавить</button>
+	    
+	</form>
+</div>
+{% else %}
+	<div class='alert alert-info'>
+		<h1>К сожалению вы не обладаете правами администратора</h1>
+	</div>
+{% endif %}
+{% endblock %}

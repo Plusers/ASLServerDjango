@@ -1,17 +1,5 @@
-
-
-
-<div class="center">
-  <h2>Sign up</h2>
-  <form method="post">
+<form action="//" method="POST">
     {% csrf_token %}
-    {% for field in form %}
-      <h>
-        {{ field }}
-        
-      </h>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
-</div>
-
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>

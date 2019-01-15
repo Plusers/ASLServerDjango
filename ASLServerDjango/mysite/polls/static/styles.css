@@ -3,6 +3,10 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   color: #8A2BE2;
+  border-radius: 5px;
+}
+h1{
+  color: white;
 }
 
 .container {

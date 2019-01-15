@@ -1,21 +1,17 @@
 {% extends "base.html" %}
-<style>
-	h1{color:white;}
-</style>
+
 {% block content %}
 {% if request.user.is_superuser %}
-	<div class='alert alert-info'>
-	  <form action="/admin/polls/books/add/" method="post">
+	  <form action="/admin/auth/user/add/" method="post">
 	    {% csrf_token %}
 	    <table>
-	    {{ form.as_table }}
+	    {{ form }}
 	    </table>
-	    <input type="submit" value="Добавить">
+	    <input type="submit" href = "/admin/auth/user/add/" value="Добавить">
 	  </form>
-	</div>
 {% else %}
 	<div class='alert alert-info'>
 		<h1>К сожалению вы не обладаете правами администратора</h1>
 	</div>
-{% endif %}
+{% endif %}	  
 {% endblock %}

@@ -1,25 +1,32 @@
 from django.conf.urls import url, include
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
-
-from mysite.polls.views import signup, PlaceListView, UsersListView, UsersAdd, user_infromation, GiveBookList, checkboxtesting
+from mysite.polls.views import *
+from django.conf import settings
 
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(pattern_name='books:menu'), name='index'),    
 
-    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    #url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^login/$', LoginFormView.as_view(), name='login'),
+    #url(r'^login/$', login, name='login'),
+
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
-    url(r'^signup/$', signup, name='signup'),
-    url(r'^checkboxtesting/$', checkboxtesting, name='checkboxtesting'),
+    url(r'^signup/$', signup,name='signup'),
 
-    url(r'^users/list/$',UsersListView.as_view() , name='users_list'),
-    url(r'^users/add/$', UsersAdd.as_view(), name='Users_add'),
-    url(r'^users/give_book/$', GiveBookList.as_view(), name='GiveBookList'),
-    url(r'^users/information/(?P<user_id>[0-9]+)/$', user_infromation, name='user_infromation'),
-
+    url(r'^users/list/$',UsersListView.as_view() , name='users_list'),#admin
+    url(r'^users/(?P<user_id>\d+)/add/$', bookgive, name='Users_add_book'), #admin/users/{{user_id.id}}/give
+    url(r'^users/(?P<user_id>\d+)/pass/$', bookpass, name='Users_pass_book'),
+    url(r'^users/information/(?P<user_id>\d+)/$', user_infromation, name='user_infromation'),#admin
+    url(r'^users/(?P<user_id>\d+)/update/$',AddBookToUser.as_view(),name='AddBookToUser'),#admin
+    url(r'^books/$',BooksList.as_view(),name='bookslist'),
     url(r'^books/', include('mysite.polls.urls', namespace='books')),
     url(r'^books_search/$', PlaceListView.as_view(), name='books_search'),
-    url(r'^users_search/$', UsersListView.as_view(), name='users_search'),
-    url(r'^admin/', admin.site.urls),]
+    url(r'^users_search/$', UsersListView.as_view(), name='users_search'),#admin
+    url(r'^admin/', admin.site.urls),
+    ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
