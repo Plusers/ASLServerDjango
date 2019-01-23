@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for place in form.userinfo.hows_book.all %}
+    <div style="margin: 20px;">
+        <div class="alert alert-info" role="alert">
+        	 <div style="color:black; font-family: Georgia, Serif">
+             ID: {{ place.id }}<br/>
+             Название:{{place.name}}</br>
+       		 Автор: {{ place.author }} <br/>    		
+             Класс: {{ place.clas }}  <br/> 
+             <a style="border-radius: 20px;" href="/books/qr-code/{{place.id}}">Подробнее</a>
+             </div>
+        </div>
+    </div>
+{% empty %}
+        <h1 style='color:white;'>Вам не выданы книги.</h1>
+{% endfor %}
+
+
+{% endblock %}

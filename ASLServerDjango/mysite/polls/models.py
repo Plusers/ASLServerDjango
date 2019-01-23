@@ -1,4 +1,7 @@
 import datetime
+import cv2
+from pyzbar.pyzbar import decode
+from PIL import Image
 from django.contrib import admin
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -53,11 +56,11 @@ class Books_model(models.Model):
         return 'id:{}, Название:{},Автор:{},Класс:{}'.format(self.id, self.name,self.author,self.clas)
 '''
 class Books(models.Model):
-    name = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название')
-    author = models.CharField(blank=False, null=False, max_length=200, verbose_name='Автор')
-    clas = models.CharField(blank=False, null=False, max_length=200, verbose_name='Класс')
-    num_izd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Номер издания')
-    name_izd = models.CharField(blank=False, null=False, max_length=200, verbose_name='Название издания')
+    name = models.CharField(blank=False, null=False, max_length=200, verbose_name='Наименование')
+    author = models.CharField(blank=False, null=False, max_length=200, verbose_name='Предмет')
+    clas = models.CharField(blank=True, null=False, max_length=200, verbose_name='Класс',default = '')
+    num_izd = models.CharField(blank=True, null=False, max_length=200, verbose_name='Номер издания',default='')
+    name_izd = models.CharField(blank=True, null=False, max_length=200, verbose_name='Название издания',default='')
     #pub_date = models.DateField('Дата добавления')
     quantity = models.IntegerField(blank=False, null=False, verbose_name='Количество книг')
     #qr_code_image = models.ImageField(upload_to='images/', null=False, blank=True)
@@ -72,6 +75,7 @@ class Books(models.Model):
         #img_books.show()
         img_books.save(filename1)
         return filename
+
     @classmethod
     def create(cls, name,author,clas,num_izd,name_izd):
         book = cls(name=name,author=author,clas = clas,num_izd=num_izd,name_izd = name_izd)
@@ -138,13 +142,43 @@ class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hows_book = models.ManyToManyField(Books)
     debt = models.IntegerField(blank=True, null=False, verbose_name='Задолжность',default=0)
-    
+   
+    def user_id(self):
+        return str(self.user)
+        
     def debt_result(self):
         self.debt=0
         return str(self.debt)
         
     def getbook(self):
         return str(self.hows_book.all())
+
+    def decode(self):
+        # Включаем первую камеру
+        cap = cv2.VideoCapture(0)
+
+        # "Прогреваем" камеру, чтобы снимок не был тёмным
+        for i in range(30):
+            cap.read()
+
+        # Делаем снимок    
+        ret, frame = cap.read()
+
+        # Записываем в файл
+        cv2.imwrite('./mysite/polls/static/media/images/decode_photo.png', frame)   
+
+        # Отключаем камеру
+        cap.release()
+
+        d=decode(Image.open('./mysite/polls/static/media/images/decode_photo.png'))
+        d=str(d)
+        start_index=d.find(':')
+        end_index=d.find(',')
+        result=d[start_index+1:end_index-1]
+        if result == '':
+            return 0
+        else:
+            return result
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

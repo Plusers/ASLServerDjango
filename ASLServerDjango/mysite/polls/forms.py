@@ -7,12 +7,13 @@ from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.forms.extras.widgets import SelectDateWidget
 
 class AuthForm(forms.Form):
-    username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Никнейм')
+    username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Логин')
     password = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Пароль')
     class Meta:
-        model = NewUser
+        model = User
         fields = ('username','password')        
 class SignUpForm(UserCreationForm):
+    username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Логин')
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Имя')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Фамилия')
     class Meta:
@@ -24,11 +25,11 @@ class UserInfoForm(forms.ModelForm):
         fields=('hows_book','debt')
 
 class BooksForm(forms.ModelForm):
-    name = forms.CharField(label='Название книги', max_length=100)
-    author = forms.CharField(label='Автор', max_length=100)
-    clas = forms.CharField(label='Класс', max_length=100)
-    num_izd = forms.CharField(label='Номер издания', max_length=100)
-    name_izd = forms.CharField(label='Название издания', max_length=100)
+    name = forms.CharField(label='Наименование книги', max_length=100)
+    author = forms.CharField(label='Предмет', max_length=100)
+    clas = forms.CharField(label='Класс', required=True, max_length=100)
+    num_izd = forms.CharField(label='Номер издания', required=True, max_length=100)
+    name_izd = forms.CharField(label='Название издания', required=True, max_length=100)
     #pub_date = forms.DateField('Дата добавления')
     quantity = forms.IntegerField(label='Количество')
 

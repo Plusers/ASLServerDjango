@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^signup/$', signup,name='signup'),
 
     url(r'^users/list/$',UsersListView.as_view() , name='users_list'),#admin
+    url(r'^users/books/$',user_books_list , name='user_books_list'),#admin
     url(r'^users/(?P<user_id>\d+)/add/$', bookgive, name='Users_add_book'), #admin/users/{{user_id.id}}/give
     url(r'^users/(?P<user_id>\d+)/pass/$', bookpass, name='Users_pass_book'),
     url(r'^users/information/(?P<user_id>\d+)/$', user_infromation, name='user_infromation'),#admin

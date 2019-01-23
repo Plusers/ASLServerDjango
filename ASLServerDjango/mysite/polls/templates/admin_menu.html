@@ -9,6 +9,7 @@ ul {
   margin-top:25px; /*делаем отступ сверху*/
   background:#819A32; /*добавляем фон всему меню*/
   height: 50px; /*задаем высоту*/
+  font-size: 1em;
 }
 a {
   text-decoration: none; /*убираем подчеркивание текста ссылок*/
@@ -61,7 +62,9 @@ Rerun
 
     <li><a href="#">Операциии с книгами</a>
         <ul>
-            <li><a href="/books/list">Все книги</a></li>
+            <li><a href="/books/list/all">Все книги</a></li>
+            <li><a href="/books/list/given">Выданные книги</a></li>
+            <li><a href="/books/list/">Не выданные книги</a></li>
             <li><a href="/books/add">Добавить книгу</a></li>
         </ul>
     </li>

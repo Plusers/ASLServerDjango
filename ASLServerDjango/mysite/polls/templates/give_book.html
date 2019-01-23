@@ -45,7 +45,9 @@ function FindOnPage(inputId) {//ищет текст на странице, в п
     <a style='color:white;'>{{ form.as_p }}</a>
     
     	<button style="border-radius: 20px;" href = '/' type = 'submit'>Выдать</button>
+      <button name='scan' style="border-radius: 20px;" type = 'submit'>Сканировать</button>
     </form>
+    <h1>ID книги котрую вы хотите выдать:{{result}}</h1>
 </div>
 {% else %}
 	<div class='alert alert-info'>

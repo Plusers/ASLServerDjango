@@ -10,6 +10,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 import qrcode
+import time
+import pandas as pd
+from xlrd import *
+import xlrd 
 import os
 from django.contrib.auth.models import User
 from mysite.polls.forms import SignUpForm, UserInfoForm
@@ -19,6 +23,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.db.models import Q
+
 
 @login_required
 def generate_qr(request, book_id):
@@ -48,7 +53,8 @@ def user_infromation(request,user_id):
         local_debt+=1
     debt_result = user_id.userinfo.debt_result()
     user_id.userinfo.debt = str(int(debt_result)+local_debt)
-    return render(request, 'users_information.html', {'user_id':user_id})
+    how_book = user_id.userinfo.hows_book.filter(status=1)
+    return render(request, 'users_information.html', {'user_id':user_id, 'how_book':how_book})
 
 class BooksList(LoginRequiredMixin, ListView):
     print("------------START----------------")
@@ -65,10 +71,12 @@ class BooksList(LoginRequiredMixin, ListView):
 
         return context
 
+
+
 class UsersInformation(LoginRequiredMixin, ListView):
     model = Books
     template_name = "books_list.html"
-    def get_context_data(self, **kwargs):
+    def get_contet_data(self, **kwargs):
         #
         context = super(BooksList, self).get_context_data(**kwargs)
         #context = super().get_context_data(**kwargs)
@@ -97,7 +105,7 @@ class LoginFormView(FormView):
     template_name = "login.html"
 
     # В случае успеха перенаправим на главную.
-    success_url = "/books"
+    success_url = "/books/"
 
     def form_valid(self, form):
         # Получаем объект пользователя на основе введённых в форму данных.
@@ -128,36 +136,104 @@ class BooksAdd(CreateView):
 
 def bookgive(request,user_id):
     model=Books
+    chet=0
+    mas=[]
+    result=''
     user_ind = User.objects.get(pk=user_id)
+    for i in user_ind.userinfo.hows_book.all():
+        mas.append(i)
+    if request.POST.get('scan')=='':
+        result = user_ind.userinfo.decode()
+        book = Books.objects.get(pk=int(result))
+        mas.append(book)
+        book.status=1
+        book.save()
+    print(mas)
 
-    form = GiveBookForm(request.POST or None)
-
-    if form.is_valid():
-        user_ind.userinfo.hows_book=form.cleaned_data.get('hows_book')
-        return HttpResponseRedirect('/users/information/'+user_id+'/')#/users/information/1/
-    return render(request, 'give_book.html', {'form': form})  
+    
+    user_ind.userinfo.hows_book=mas
+    print('now',user_ind.userinfo.hows_book.all())
+        #return HttpResponseRedirect('/users/information/'+user_id+'/')#/users/information/1/
+    form =  user_ind.userinfo.hows_book.all()
+    return render(request, 'give_book.html', {'form': form, 'result':result})  
 
 def bookpass(request,user_id):
     model=Books
+    result=''
     user_ind = User.objects.get(pk=user_id)
-    if request.method == 'POST':
-        form=user_ind.userinfo.hows_book.all()
-        for i in range(0,user_ind.userinfo.hows_book.count()):
-            fer = request.POST.get('checkbox[]')
-            print(fer)
-            #if fer==str(form[i].id):
-                #print(form[i].id)
+    if request.POST.get('scan') == '':
+        result = user_ind.userinfo.decode()
+        form = user_ind.userinfo.hows_book.all()
+        for i in form:
+            if i.id==int(result):
+                book = Books.objects.get(pk=i.id)
+                book.status=0
+                i.status=0
+                i.save()
+                print('BOOK:',book.status)
+                book.save() 
+                
+    print(user_ind.userinfo.hows_book.filter(status=1))
+    user_ind.userinfo.hows_book=user_ind.userinfo.hows_book.filter(status=1)
+    form = user_ind.userinfo.hows_book.all()
+    return render(request, 'pass_book.html', {'form': form , 'result':result})  
 
-        return HttpResponseRedirect('/users/information/'+user_id+'/')
-    form=user_ind.userinfo.hows_book.all()
-    ##/users/information/1/
-    return render(request, 'pass_book.html', {'form': form})  
+def user_books_list(request):
+    username = request.user
+    user = User.objects.get(username=username)
+    form = user
+    return render(request, 'user_books_list.html', {'form': form})
+      
 
 def bookadd(request):
     if request.method == 'POST':
         qwerty = BooksForm(request.POST)
         if qwerty.is_valid():
             qwerty.save()
+            if request.POST.get('table') == '':
+                start = time.time()
+                ger = Books()
+                rb = xlrd.open_workbook('/home/vladislav/Загрузки/tablewithbooks.xlsx')
+                sheet = rb.sheet_by_index(0)
+                row=[]
+                for i in range(1,sheet.nrows):
+                    r=sheet.row_values(i)
+                    row.append(r)
+                index = Books.objects.count()#последний индекс книги
+                index+=1
+                d=0
+                #6-колиство книг
+                #1-наименование
+                #2-прежмет
+                #0-класс
+                #3-издательство
+                for i in range(0,len(row)):
+                    if int(row[i][7]==0):#количество
+                        d=1
+                    elif int(row[i][7])>1:#количество
+                        for j in range(0,int(row[i][7])):#количество
+                            index+=1
+                            ger.id = index
+                            ger.name = row[i][1]#Наименование
+                            ger.author = row[i][2]#предмет
+                            ger.clas = row[i][0]#класс
+                            ger.num_izd='Нет'
+                            ger.name_izd = row[i][3] #издательство
+                            ger.quantity=1
+                            ger.save()
+                    elif int(row[i][7])==1:
+                        index+=1
+                        ger.id = index
+                        ger.name = row[i][1]
+                        ger.author = row[i][2]
+                        ger.clas = row[i][0]
+                        ger.num_izd='Нет'
+                        ger.name_izd = row[i][3]
+                        ger.quantity=1
+                        ger.save()
+                finish = time.time()
+                result = finish-start
+                print('Минут:',result//60,'Секунд:',result%60)
             '''
             quantity=qwerty.cleaned_data.get('quantity')
             #index = Books_model.objects.count()

@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h1  style="color:white;" align = "center"></h1>
-<div class='alert alert-info'>
-    <h1>QR-код</h1>
-	{% load staticfiles %}
-	<img src="/static/{{filename}}">
-	 <form action="/books/{{ book_id.id }}/update">
-    	<input style="border-radius: 20px;" type="submit" value="Изменить книгу"/>
-	</form>
-</div>
+{% if request.user.is_superuser %}
+	<h1  style="color:white;" align = "center"></h1>
+	<div class='alert alert-info'>
+	    <h1>QR-код</h1>
+		{% load staticfiles %}
+		<img src="/static/{{filename}}">
+		 <form action="/books/{{ book_id.id }}/update">
+	    	<input style="border-radius: 20px;" type="submit" value="Изменить книгу"/>
+		</form>
+	</div>
+{% else %}
+    <h1  style="color:white;" align = "center"></h1>
+	<div class='alert alert-info'>
+	    <h1>QR-код</h1>
+		{% load staticfiles %}
+		<img src="/static/{{filename}}">
+	</div>
+{% endif %}
 
 {% endblock %}

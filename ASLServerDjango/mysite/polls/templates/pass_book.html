@@ -46,7 +46,10 @@ function FindOnPage(inputId) {//ищет текст на странице, в п
       <p><input type='checkbox' name='checkbox[]' value={{field.id}} >{{field}}</br></p>
     {%endfor%}
     <button style="border-radius: 20px;" href = '/' type = 'submit'>Сдать</button>
+    <button name='scan' style="border-radius: 20px;" type = 'submit'>Сканировать</button>
   </form>
+  <h1>ID книги котрую вы хотите сдать:{{result}}</h1>
+
 </div>
 {% else %}
 	<div class='alert alert-info'>

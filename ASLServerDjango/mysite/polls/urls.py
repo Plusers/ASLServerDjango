@@ -1,14 +1,6 @@
 from django.conf.urls import url
 
-from .views import (
-    generate_qr,
-    BooksList,
-    BookUpdate,
-    BookDelete,
-    users_home,
-    BooksAdd,
-    bookadd,
-)
+from .views import *
 
 
 urlpatterns = [
