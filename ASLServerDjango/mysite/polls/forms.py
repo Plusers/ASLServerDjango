@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from mysite.polls.models import Books, NewUser, UserInfo#, Books_model
+from mysite.polls.models import Books, UserInfo
 from django.forms.fields import DateField, ChoiceField, MultipleChoiceField
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.forms.extras.widgets import SelectDateWidget
@@ -14,28 +14,30 @@ class AuthForm(forms.Form):
         fields = ('username','password')        
 class SignUpForm(UserCreationForm):
     username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Логин')
+    email = forms.EmailField(max_length=30, required=False, help_text='Optional.',label='Почта')
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Имя')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Фамилия')
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name','password1', 'password2', )
+        fields = ('username', 'email', 'first_name', 'last_name','password1', 'password2', )
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
         fields=('hows_book','debt')
-
+BOOK=(('Учебник'),('Художественная литература'))
 class BooksForm(forms.ModelForm):
-    name = forms.CharField(label='Наименование книги', max_length=100)
-    author = forms.CharField(label='Предмет', max_length=100)
-    clas = forms.CharField(label='Класс', required=True, max_length=100)
-    num_izd = forms.CharField(label='Номер издания', required=True, max_length=100)
-    name_izd = forms.CharField(label='Название издания', required=True, max_length=100)
+    name = forms.CharField(label='Название', max_length=100)
+    author = forms.CharField(label='Автор', max_length=100)
+    clas = forms.CharField(label='Класс', required=False, max_length=100)
+    num_izd = forms.CharField(label='Номер издания', required=False, max_length=100)
+    name_izd = forms.CharField(label='Название издания', required=False, max_length=100)
     #pub_date = forms.DateField('Дата добавления')
     quantity = forms.IntegerField(label='Количество')
+   # options = forms.ChoiceField(choices=BOOK, label='Вид книги:')
 
     class Meta:
         model=Books#Books_model
-        fields = ('name','author', 'clas', 'num_izd', 'name_izd', 'quantity')
+        fields = ('name','author', 'clas', 'num_izd', 'name_izd', 'quantity')#'options')
 '''
 model = Books
 a=[""]*len(Books.objects.all())

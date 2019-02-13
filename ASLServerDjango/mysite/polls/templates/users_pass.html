@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <h1  style="color:white;" align = "center">Ученики</h1>
+    <form action="{% url 'users_search' %}" method="GET">
+        <input style = 'border-radius: 20px;' type="text" name="fename" />
+        <button style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit">Поиск по фамилии</button>
+        <input style = 'border-radius: 20px;' type="text" name="nickname" />
+        <button style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit">Поиск по логину</button>
+    </form>
+
+    {% include "results_search.html" %}
+
+    {% for place in users %}
+        {% if place.userinfo.debt > 0 %}
+            <div style="margin: 20px;">
+            	<div class="alert alert-info" role="alert">
+            	    <div style="color:black; font-family: Georgia, Serif">
+                    ID: {{ place.id }}<br/>
+                    Логин:{{place.username}}</br>
+            		Имя: {{ place.first_name }} <br/>    		
+                    Фамилия: {{ place.last_name }}  <br/> 
+                    Почта: {{place.email}}</br>
+                    <a style="border-radius: 20px;" href="/users/information/{{place.id}}">Войти в личный кабинет</a>
+
+                    </div>
+            	</div>
+            </div>
+        {% endif%}
+    {% empty %}
+        <h1 style='color:white;'>Таких учеников нет</h1>
+    {% endfor %}
+{% else %}
+    <div class='alert alert-info'>
+        <h1>К сожалению вы не обладаете правами администратора</h1>
+    </div>
+{% endif %}
+{% endblock %}

@@ -19,12 +19,14 @@ urlpatterns = [
     url(r'^signup/$', signup,name='signup'),
 
     url(r'^users/list/$',UsersListView.as_view() , name='users_list'),#admin
+    url(r'^users/list-pass/$',UsersListpass.as_view() , name='users_list_pass'),#admin
     url(r'^users/books/$',user_books_list , name='user_books_list'),#admin
+    url(r'^user/cabinet/$',user_cabinet , name='user_cabinet'),#admin
     url(r'^users/(?P<user_id>\d+)/add/$', bookgive, name='Users_add_book'), #admin/users/{{user_id.id}}/give
     url(r'^users/(?P<user_id>\d+)/pass/$', bookpass, name='Users_pass_book'),
     url(r'^users/information/(?P<user_id>\d+)/$', user_infromation, name='user_infromation'),#admin
     url(r'^users/(?P<user_id>\d+)/update/$',AddBookToUser.as_view(),name='AddBookToUser'),#admin
-    url(r'^books/$',BooksList.as_view(),name='bookslist'),
+    url(r'^books/$',PlaceListView.as_view(),name='bookslist'),
     url(r'^books/', include('mysite.polls.urls', namespace='books')),
     url(r'^books_search/$', PlaceListView.as_view(), name='books_search'),
     url(r'^users_search/$', UsersListView.as_view(), name='users_search'),#admin

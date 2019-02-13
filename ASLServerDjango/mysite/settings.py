@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/qr-books/',
 ]
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'v.groschkov@yandex.ru'
+EMAIL_HOST_PASSWORD = "vladusik1428"
+EMAIL_USE_SSL = True
+

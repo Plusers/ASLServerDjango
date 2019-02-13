@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if request.user.is_superuser %}
+<div class='alert alert-info'>
+	<form method="post">
+		{% csrf_token %}
+    <h1>Чтобы правильно отсканировать воспользуйтесь видеоинструкцией</h1>
+    <img src="/static/media/images/gifprocess.gif"></br>
+    <button name='scan' style="border-radius: 20px; background-color: yellow; font-size: 2.0em;" type = 'submit'>Сканировать</button>
+  </form>
+  <h1>ID книги котрую вы сдали:{{result}}</h1>
+  <form action="/users/information/{{form}}">
+      <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.7em;" type="submit" value="Назад" />
+    </form>
+</div>
+{% else %}
+	<div class='alert alert-info'>
+		<h1>К сожалению вы не обладаете правами администратора</h1>
+	</div>
+{% endif %}
+{% endblock %}
+

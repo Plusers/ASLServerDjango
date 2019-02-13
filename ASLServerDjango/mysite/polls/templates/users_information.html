@@ -4,9 +4,10 @@
 	<div class='alert alert-info'>
 		<h1>Пользователь:</h1>
 		<h1>ID: {{ user_id.id }}</h1>
-		<h1>Никнейм: {{ user_id.username}}</h1>
+		<h1>Логин: {{ user_id.username}}</h1>
 		<h1>Имя: {{ user_id.first_name }}</h1>
 		<h1>Фамилия: {{ user_id.last_name }}</h1>
+		<h1>Почта: {{ user_id.email }}</h1>
 		<h1>Задолжностей: {{ user_id.userinfo.debt }}</h1>
 		<h1>Выданы книги:<br/>
 		{% for u in user_id.userinfo.hows_book.all %}
@@ -17,13 +18,13 @@
 
 
 	<form action="/users/{{user_id.id}}/add/">
-	    <input style="border-radius: 20px;" type="submit" value="Выдать книги"/>
+	    <input style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit" value="Выдать книги"/>
 	</form>
 	<form action="/users/{{user_id.id}}/pass/">
-	    <input style="border-radius: 20px;" type="submit" value="Сдать книги"/>
+	    <input style="border-radius: 20px; background-color: #05f7c7; font-size: 1.3em;" type="submit" value="Сдать книги"/>
 	</form>
 	<form action="/users/list/">
-	    <input style="border-radius: 20px;" type="submit" value="Назад" />
+	    <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.3em;" type="submit" value="Назад" />
 	</form>
 	</div>
 {% else %}

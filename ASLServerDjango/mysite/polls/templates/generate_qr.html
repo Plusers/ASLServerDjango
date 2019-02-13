@@ -8,7 +8,16 @@
 		{% load staticfiles %}
 		<img src="/static/{{filename}}">
 		 <form action="/books/{{ book_id.id }}/update">
-	    	<input style="border-radius: 20px;" type="submit" value="Изменить книгу"/>
+	    	<input style="border-radius: 20px; background-color: yellow; font-size: 1.7em;" type="submit" value="Изменить книгу"/>
+		</form>
+		<form action="/books/{{ book_id.id }}/delete">
+	    	<button style="border-radius: 20px; background-color: red; font-size: 1.7em;" type = 'submit'>Удалить</button>
+		</form>
+		<form class ="print-doc" action = "javascript:(print());">
+		<button style="border-radius: 20px; background-color: pink; font-size: 1.7em;"type = 'submit'>Распечатать</button>
+		</form>
+		<form action="/books/list/">
+	    <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.7em;" type="submit" value="Назад" />
 		</form>
 	</div>
 {% else %}

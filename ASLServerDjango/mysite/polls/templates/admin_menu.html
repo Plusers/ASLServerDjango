@@ -1,5 +1,6 @@
 <style>
-  body {background-image:  url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Interior_view_of_Stockholm_Public_Library.jpg); background-size: cover;}
+  body {background-image:  url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Interior_view_of_Stockholm_Public_Library.jpg);
+    background-position: center;background-size: auto;}
 </style>
 <style>
 ul {
@@ -7,6 +8,7 @@ ul {
   margin: 0; /*убираем отступы*/
   padding-left: 0; /*убираем отступы*/
   margin-top:25px; /*делаем отступ сверху*/
+  font-size: 1.5em;
   background:#819A32; /*добавляем фон всему меню*/
   height: 50px; /*задаем высоту*/
   font-size: 1em;
@@ -54,19 +56,23 @@ Rerun
 </style>
 
 <ul>
+    <li><a href="/user/cabinet/">Личный кабинет</a></li>
     <li><a href="#">Ученики</a>
         <ul>
             <li><a href="/users/list">Все ученики</a></li>
+            <li><a href='/users/list-pass/'>Ученики с задолжностями</a></li>
         </ul>
     </li>
 
     <li><a href="#">Операциии с книгами</a>
         <ul>
-            <li><a href="/books/list/all">Все книги</a></li>
-            <li><a href="/books/list/given">Выданные книги</a></li>
+            <li><a href="/books/all/">Все книги</a></li>
+            <li><a href="/books/pass/">Выданные книги</a></li>
             <li><a href="/books/list/">Не выданные книги</a></li>
             <li><a href="/books/add">Добавить книгу</a></li>
+            <li><a href="/books/search_losen/">Потеряна книга</a></li>
         </ul>
     </li>
     <li><a href="/logout">Выйти из аккаунта</a></li>
 </ul>
+
