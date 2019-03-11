@@ -5,6 +5,7 @@ from mysite.polls.models import Books, UserInfo
 from django.forms.fields import DateField, ChoiceField, MultipleChoiceField
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple
 from django.forms.extras.widgets import SelectDateWidget
+import datetime
 
 class AuthForm(forms.Form):
     username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Логин')
@@ -13,10 +14,11 @@ class AuthForm(forms.Form):
         model = User
         fields = ('username','password')        
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Логин')
-    email = forms.EmailField(max_length=30, required=False, help_text='Optional.',label='Почта')
-    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Имя')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Фамилия')
+    username = forms.CharField(max_length=30, required=False,label='Логин*')
+    email = forms.EmailField(max_length=30, required=False,label='Почта*')
+    first_name = forms.CharField(max_length=30, required=False,label='Имя*')
+    last_name = forms.CharField(max_length=30, required=False,label='Фамилия*')
+    password1 = forms.CharField(widget=forms.PasswordInput,max_length=30, required=False,label='Пароль*')
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name','password1', 'password2', )
@@ -32,12 +34,12 @@ class BooksForm(forms.ModelForm):
     num_izd = forms.CharField(label='Номер издания', required=False, max_length=100)
     name_izd = forms.CharField(label='Название издания', required=False, max_length=100)
     #pub_date = forms.DateField('Дата добавления')
-    quantity = forms.IntegerField(label='Количество')
+    #quantity = forms.IntegerField(label='Количество')
    # options = forms.ChoiceField(choices=BOOK, label='Вид книги:')
 
     class Meta:
         model=Books#Books_model
-        fields = ('name','author', 'clas', 'num_izd', 'name_izd', 'quantity')#'options')
+        fields = ('name','author', 'clas', 'type_of_book', 'num_izd', 'name_izd')#'options')
 '''
 model = Books
 a=[""]*len(Books.objects.all())

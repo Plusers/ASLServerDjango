@@ -14,16 +14,15 @@
 {% for place in object_list %}
     <div style="margin: 20px;">
     	<div class="alert alert-info" role="alert" style="width: 400px">
-    	    <div style="color:black; font-family: Georgia, Serif">
+    	    <div style="color:black; font-family: Georgia, Arial">
             ID:{{place.id}}<br/>
     		Название: {{ place.name }} <br/>    		
             Автор: {{ place.author }}  <br/> 
     		Класс: {{ place.clas }}  <br/>
     		Номер издания: {{ place.num_izd }}  <br/>
     		Название издания: {{ place.name_izd }} <br/>
-            Количество книг: {{ place.quantity }} <br/>
             Выдана книга: {{place.status}}</br>
-            Вид книги: {{place.options}} </br>
+            <!--Вид книги: {{place.type_of_book}} </br>!-->
             <a style="border-radius: 20px;" href="/books/qr-code/{{place.id}}">Подробнее</a>
             </div>
     	</div>

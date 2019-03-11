@@ -27,16 +27,28 @@ from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 
+#--------------------CHECKING------------------------
 
+print('START CHECKING')
+users = User.objects.all()
+for user in users:
+    books_of_user = user.userinfo.hows_book.all()
+    for book in books_of_user:
+        now = datetime.date.today()
+        if book.pass_date == now:
+            send_info = 'Сегодня вы должны сдать в библиотеку книгу:'+'\n'+'Название:'+book.name+'\n'+'Автор:'+book.author
+            send_mail('Администрация Библиотеки Школы 444', str(send_info), settings.EMAIL_HOST_USER, [str(user.email)])
+            print('yes')
+                
+print('ENDING...')
+#-------------------End CHECKING----------------------
 
 @login_required
 def generate_qr(request, book_id):
     os.makedirs(".mysite/polls/static/media/images/", exist_ok=True)
     book_id = Books.objects.get(pk=book_id)
     filename = book_id.generate()
-    print(filename)
     user = User.objects.all()
-    print(user)
     return render(request, 'generate_qr.html', {'book_id': book_id, 'filename':filename})
 
 def user_infromation(request,user_id):
@@ -51,7 +63,6 @@ def user_infromation(request,user_id):
             else:
                 i.status=1
                 i.save()
-        print(i,i.status)
         j.save()
         i.save()
         local_debt+=1
@@ -64,7 +75,6 @@ class BooksList(LoginRequiredMixin, ListView):
     print("------------START----------------")
     model = Books
     template_name = "books_list_unpass.html"
-    print(User)
     Books.create("a","a","a","a","a")
     def get_context_data(self, **kwargs):
         #
@@ -98,10 +108,10 @@ class BooksListPass(LoginRequiredMixin, ListView):
         context['books'] = Books.objects.filter(status=1)
 
         return context
+
 @login_required
 def user_cabinet(request):
     models = User
-    print(request.user.userinfo.debt)
     return render(request, 'user_cabinet.html')
 
 class UsersInformation(LoginRequiredMixin, ListView):
@@ -160,7 +170,7 @@ class LoginFormView(FormView):
     template_name = "login.html"
 
     # В случае успеха перенаправим на главную.
-    success_url = "/books/"
+    success_url = "/books/list/"
 
     def form_valid(self, form):
         # Получаем объект пользователя на основе введённых в форму данных.
@@ -168,17 +178,17 @@ class LoginFormView(FormView):
 
         if self.user.is_superuser==True:
             login(self.request, self.user)
-            return render(self.request, 'admin_menu.html')
+            return render(self.request, 'user_cabinet.html')
         elif self.user.is_superuser==False:
             login(self.request, self.user)
-            return render(self.request, 'user_menu.html')
-        # Выполняем аутентификацию пользователя.
+            return render(self.request, 'user_cabinet.html')
+        
         
 @login_required
 def users_home(request):
     models = User
     user = User.objects.filter(pk=id)
-    print(user)
+   
     return render(request, 'admin_menu.html')
 
 class BooksAdd(CreateView):
@@ -195,22 +205,37 @@ def bookgive(request,user_id):
         mas.append(i)
     if request.POST.get('scan')=='':
         result = user_ind.userinfo.decode()
-        try:
+        print(result)
+        if result!=0:
             book = Books.objects.get(pk=int(result))
+            book.give_date = datetime.date.today()
             mas.append(book)
             book.status=1
             user_ind.userinfo.debt+=1
             book.save()
             user_ind.userinfo.hows_book=mas
+            '''
+            if str(book.type_of_book) == '1':
+                print('Учебник')
+                date = datetime.date(2019,5,20)
+                book.pass_date = date
+                #book.pass_date = datetime.data(2019, 5,20)
+                book.save()
+            elif str(book.type_of_book) == '2':
+                print('Художественная литература')
+                today = datetime.date.today()
+                book.pass_date = datetime.date(today.year, today.mounth, today.day+7)
+                print('SOOO GOOD')
+                book.save()
+            '''
             user_ind.save()
-            return HttpResponseRedirect('/users/information/'+str(user_ind.id))
-        except:
+            #return HttpResponseRedirect('/users/information/'+str(user_ind.id))
+        else:
             result = 'Отсканируйте еще раз'
-    print(mas)
+    
 
     
     user_ind.userinfo.hows_book=mas
-    print('now',user_ind.userinfo.hows_book.all())
         #return HttpResponseRedirect('/users/information/'+user_id+'/')#/users/information/1/
     form =  user_ind.id
     return render(request, 'give_book.html', {'form': form, 'result':result})  
@@ -220,25 +245,26 @@ def bookpass(request,user_id):
     result=''
     user_ind = User.objects.get(pk=user_id)
     if request.POST.get('scan') == '':
-        result = user_ind.userinfo.decode()
-        form = user_ind.userinfo.hows_book.all()
-        for i in form:
-            if i.id==int(result): 
-                book = Books.objects.get(pk=i.id)
-                book.status=0
-                i.status=0
-                user_ind.userinfo.debt-=1
-                user_ind.save()
-                i.save()
-                print('BOOK:',book.status)
-                book.save() 
-            else:
-                result = 'Отсканируйте еще раз'
-                
-    print(user_ind.userinfo.hows_book.filter(status=1))
+        try:
+            result = user_ind.userinfo.decode()
+            form = user_ind.userinfo.hows_book.all()
+            for i in form:
+                if i.id==int(result): 
+                    book = Books.objects.get(pk=i.id)
+                    book.status=0
+                    i.status=0
+                    user_ind.userinfo.debt-=1
+                    user_ind.save()
+                    i.save()
+                    
+                    book.save()
+                    #return HttpResponseRedirect('/users/information/'+str(user_ind.id))
+        except:
+            result = 'Отсканируйте еще раз'
     user_ind.userinfo.hows_book=user_ind.userinfo.hows_book.filter(status=1)
     form = user_ind.id
     return render(request, 'pass_book.html', {'form': form , 'result':result})  
+
 @login_required
 def user_books_list(request):
     username = request.user
@@ -258,6 +284,8 @@ def bookadd(request):
     if request.method == 'POST':
         qwerty = BooksForm(request.POST)
         if qwerty.is_valid():
+            qwerty.pass_date = datetime.date.today()
+            qwerty.give_date = datetime.date.today()
             qwerty.save()
             if request.POST.get('table') == '':
                 start = time.time()
@@ -302,7 +330,7 @@ def bookadd(request):
                         ger.save()
                 finish = time.time()
                 result = finish-start
-                print('Минут:',result//60,'Секунд:',result%60)
+                
             '''
             quantity=qwerty.cleaned_data.get('quantity')
             #index = Books_model.objects.count()
@@ -334,7 +362,7 @@ def bookadd(request):
                 ger.quantity=quantity
                 ger.save()
                 '''
-            return HttpResponseRedirect('/books/list/')
+            return HttpResponseRedirect('/books/all/')
             
         '''
         qwerty = BooksForm(request.POST)
@@ -370,20 +398,13 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             send_info = 'Данные для входа в систему Библиотека Школы 444'+'\n'+'Логин:'+str(username)+'\n'+'Пароль:'+str(raw_password)
             send_mail('Администрация Библиотеки Школы 444', str(send_info), settings.EMAIL_HOST_USER, [str(email)])
-            '''
-            userprofile = userinfo_form.save(commit=False)
-            userprofile.user=user
-            userprofile.hows_book=None
-            userprofile.debt = 0
-            userprofile.save()
-            '''
             user.save()
             login(request, user)
             return HttpResponseRedirect('/')
     else:
         form = SignUpForm()
-        #userinfo_form=UserInfoForm()
-    return render(request, 'signup.html', {'form': form})#, 'userinfo_form': userinfo_form})
+    return render(request, 'signup.html', {'form': form})
+
 def auth(request):
     if request.method == 'POST':
         form = AuthForm(request.POST)

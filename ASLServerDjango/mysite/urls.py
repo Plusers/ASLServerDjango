@@ -13,7 +13,7 @@ urlpatterns = [
 
     #url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^login/$', LoginFormView.as_view(), name='login'),
-    #url(r'^login/$', login, name='login'),
+    #url(r'^login/$', auth, name='login'),
 
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', signup,name='signup'),

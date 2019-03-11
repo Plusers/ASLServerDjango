@@ -7,9 +7,9 @@
 	    <h1>QR-код</h1>
 		{% load staticfiles %}
 		<img src="/static/{{filename}}">
-		 <form action="/books/{{ book_id.id }}/update">
+		<!--<form action="/books/{{ book_id.id }}/update">
 	    	<input style="border-radius: 20px; background-color: yellow; font-size: 1.7em;" type="submit" value="Изменить книгу"/>
-		</form>
+		</form>!-->
 		<form action="/books/{{ book_id.id }}/delete">
 	    	<button style="border-radius: 20px; background-color: red; font-size: 1.7em;" type = 'submit'>Удалить</button>
 		</form>
