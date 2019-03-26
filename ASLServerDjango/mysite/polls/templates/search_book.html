@@ -8,6 +8,11 @@
     <img src="/static/media/images/gifprocess.gif"></br>
     <button name='scan' style="border-radius: 20px; background-color: yellow; font-size: 2.0em;" type = 'submit'>Сканировать</button>
   </form>
+  <form method="post">
+    {% csrf_token %}
+    <button name='isbn_scan' style="border-radius: 20px; background-color: yellow; font-size: 2.0em;" type = 'submit'>Isbn</button>
+    <h1>{{isbn_form}}</h1>
+  </form>
   <h1>ID книги котрую вы сдали:{{result}}</h1>
   <form action="/users/information/{{form}}">
       <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.7em;" type="submit" value="Назад" />

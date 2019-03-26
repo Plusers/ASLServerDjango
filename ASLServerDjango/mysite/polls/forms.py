@@ -34,12 +34,18 @@ class BooksForm(forms.ModelForm):
     num_izd = forms.CharField(label='Номер издания', required=False, max_length=100)
     name_izd = forms.CharField(label='Название издания', required=False, max_length=100)
     #pub_date = forms.DateField('Дата добавления')
-    #quantity = forms.IntegerField(label='Количество')
+    quantity = forms.CharField(label='ISBN-код')
    # options = forms.ChoiceField(choices=BOOK, label='Вид книги:')
 
     class Meta:
         model=Books#Books_model
-        fields = ('name','author', 'clas', 'type_of_book', 'num_izd', 'name_izd')#'options')
+        fields = ('name','author', 'clas', 'type_of_book', 'num_izd', 'name_izd', 'quantity')#'options')
+class IsbnBookForm(forms.ModelForm):
+    quantity= forms.CharField(label='ISBN-код')
+
+    class Meta:
+        model = Books
+        fields = ('quantity', )
 '''
 model = Books
 a=[""]*len(Books.objects.all())

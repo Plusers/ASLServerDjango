@@ -12,6 +12,13 @@ from django.db import models
 from django.utils import timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
+class News(models.Model):
+    title = models.CharField(blank=False, null=True, verbose_name='Заголовок новости', max_length=200)
+    text_of_news = models.CharField(blank=False, null=True, verbose_name='Текс новости', max_length=200)
+    data_pub = models.DateField('Дата публикации новости',null=True)
+
+
 BOOK=((1,'Учебник'), (2,'Художественная литература'))
 class Books(models.Model):
     name = models.CharField(blank=False, null=False, max_length=200, verbose_name='Наименование')
@@ -22,7 +29,8 @@ class Books(models.Model):
     give_date = models.DateField('Дата выдачи',null=True)
     pass_date = models.DateField('Дата сдачи',null=True)
     type_of_book = models.IntegerField(choices=BOOK, default=1, verbose_name='Вид книги')
-    quantity = models.IntegerField(blank=False, null=True, verbose_name='Количество книг')
+    quantity = models.CharField(blank=False, null=False, verbose_name=' ISBN-код', max_length=200)
+    #dop_id = models.CharField()
     #qr_code_image = models.ImageField(upload_to='images/', null=False, blank=True)
     status = models.IntegerField(null = False,blank = False, verbose_name='Выдана книга(1) или нет(0)', default=0)
     #options = models.CharField(max_length=100, blank = False, choices=BOOK, verbose_name='Вид книги:')
@@ -58,6 +66,7 @@ class UserInfo(models.Model):
     hows_book = models.ManyToManyField(Books)
     debt = models.IntegerField(blank=True, null=False, verbose_name='Задолжность',default=0)
     
+    
     def user_id(self):
         return str(self.user)
         
@@ -85,6 +94,7 @@ class UserInfo(models.Model):
             return 0
         else:
             return result
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

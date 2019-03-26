@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <!--<div style="height: 30px; background: url(https://uguide.ru/js/script/girlianda_uguide_ru_1.gif) repeat-x 100%;"></div>!-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.3/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.4/css/all.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet"
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -19,6 +22,7 @@
     crossorigin="anonymous">
   </script>
 
+
   <style>
   body {background-image:  url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Interior_view_of_Stockholm_Public_Library.jpg); background-size: contain;border-radius: 5px;}
   h1{color:black;}
@@ -31,7 +35,9 @@
   </head>
   <body>
     <header>
-      
+      <header>
+        <div aria-busy="true" aria-label="Loading, please wait." role="progressbar"></div>
+      </header>
 
       <h1 style="color:white;" align = "center">Библиотека школы №444</h1> 
       {% if user.is_superuser %}

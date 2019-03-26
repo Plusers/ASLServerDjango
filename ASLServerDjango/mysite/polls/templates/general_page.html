@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+	<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+	<meta charset="UTF-8">
+    <title>Как добраться?</title>
+</head>
+<style>
+
+	#table1 {
+	  max-width: 500px;  /* ширина изображения + ширина фонового изображения */
+	  margin: 0 auto;  /* по середине */
+	  border-collapse: collapse;
+	}
+	#table1 img {
+	  display: block;  /* чтобы не было отступа под картинкой */
+	  width: 100%;
+	}
+
+	* { box-sizing: border-box; }
+
+	body { font-family: sans-serif; }
+
+	.carousel {
+	  background: #EEE;
+	}
+
+	.carousel img {
+	  display: block;
+	  height: 200px;
+	}
+
+	@media screen and ( min-width: 100% ) {
+	  .carousel img {
+	    height: 400px;
+	    margin-left: 10px;
+	  }
+	}
+</style>
+<!--
+<div class="carousel"
+  data-flickity='{ "imagesLoaded": true, "percentPosition": false, "autoPlay": true }'>
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" alt="orange tree" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" alt="submerged" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" alt="look-out" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" alt="One World Trade" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" alt="drizzle" />
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" alt="cat nose" />
+</div>
+!-->
+<h1></h1>
+
+        <h1 style='color: white;'>Как добраться до наших библиотек</h1>
+
+<p>
+	<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Adcf278f7eb5aa266ac6c30036f5b971c46f555152ec02bba08bc5548857709aa&amp;width=auto&amp;height=436&amp;lang=ru_RU&amp;scroll=true"></script>
+</p>
+</html>
+
+{% endblock %}

@@ -10,7 +10,8 @@ from django.conf import settings
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(pattern_name='books:menu'), name='index'),    
-
+    url(r'^library/$', general_page, name='general-page'),
+    url(r'^news/$', news, name='news-page'),
     #url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^login/$', LoginFormView.as_view(), name='login'),
     #url(r'^login/$', auth, name='login'),

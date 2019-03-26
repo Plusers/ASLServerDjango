@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'o2v3e=lf#fg%bumk1%(ba5n_yk-rm#r((c4r14p%z-7e7p$q#x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')

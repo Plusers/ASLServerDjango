@@ -17,7 +17,7 @@ from xlrd import *
 import xlrd 
 import os
 from django.contrib.auth.models import User
-from mysite.polls.forms import SignUpForm, UserInfoForm
+from mysite.polls.forms import *
 from .forms import *
 from .models import *
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -108,6 +108,14 @@ class BooksListPass(LoginRequiredMixin, ListView):
         context['books'] = Books.objects.filter(status=1)
 
         return context
+@login_required
+def general_page(request):
+    return render(request, 'general_page.html')
+
+@login_required
+def news(request):
+    news_all = News.objects.all()
+    return render(request, 'news.html', {'news_all': news_all})
 
 @login_required
 def user_cabinet(request):
@@ -154,14 +162,26 @@ class UsersListpass(LoginRequiredMixin, ListView):
 def search_book(request):
     model=Books
     result=''
-    if request.POST.get('scan') == '':
+    if request.POST.get('isbn_scan') == '':
+        qwerty = IsbnBookForm(request.POST)
+        if qwerty.is_valid():
+           isbn=qwerty.cleaned_data.get('quantity')
+           isbn= str(isbn)
+           for user in User.objects.all():
+            for book in user.userinfo.hows_book.all():
+                if int(isbn) == int(book.quantity):
+                    return HttpResponseRedirect('/users/information/'+str(user.id))
+
+
+    elif request.POST.get('scan') == '':
         result = request.user.userinfo.decode()
         for user in User.objects.all():
             for book in user.userinfo.hows_book.all():
                 if int(result) == book.id:
                     return HttpResponseRedirect('/users/information/'+str(user.id))
-                
-    return render(request, 'search_book.html', {'result':result})  
+    else:
+        qwerty=IsbnBookForm()            
+    return render(request, 'search_book.html', {'isbn_form':qwerty,'result':result})  
 
 class LoginFormView(FormView):
     form_class = AuthenticationForm
@@ -170,7 +190,7 @@ class LoginFormView(FormView):
     template_name = "login.html"
 
     # В случае успеха перенаправим на главную.
-    success_url = "/books/list/"
+    success_url = "/library/"
 
     def form_valid(self, form):
         # Получаем объект пользователя на основе введённых в форму данных.
@@ -178,10 +198,10 @@ class LoginFormView(FormView):
 
         if self.user.is_superuser==True:
             login(self.request, self.user)
-            return render(self.request, 'user_cabinet.html')
+            return render(self.request, 'general_page.html')
         elif self.user.is_superuser==False:
             login(self.request, self.user)
-            return render(self.request, 'user_cabinet.html')
+            return render(self.request, 'general_page.html')
         
         
 @login_required
@@ -203,7 +223,20 @@ def bookgive(request,user_id):
     user_ind = User.objects.get(pk=user_id)
     for i in user_ind.userinfo.hows_book.all():
         mas.append(i)
-    if request.POST.get('scan')=='':
+    if request.POST.get('isbn_scan') == '':
+        qwerty = IsbnBookForm(request.POST)
+        if qwerty.is_valid():
+           isbn=qwerty.cleaned_data.get('quantity')
+           isbn= str(isbn)
+           book = Books.objects.get(quantity=int(isbn))
+           book.give_date = datetime.date.today()
+           mas.append(book)
+           book.status=1
+           user_ind.userinfo.debt+=1
+           book.save()
+           user_ind.userinfo.hows_book=mas
+
+    elif request.POST.get('scan')=='':
         result = user_ind.userinfo.decode()
         print(result)
         if result!=0:
@@ -232,19 +265,42 @@ def bookgive(request,user_id):
             #return HttpResponseRedirect('/users/information/'+str(user_ind.id))
         else:
             result = 'Отсканируйте еще раз'
+    else:
+        qwerty=IsbnBookForm()
     
 
     
     user_ind.userinfo.hows_book=mas
         #return HttpResponseRedirect('/users/information/'+user_id+'/')#/users/information/1/
     form =  user_ind.id
-    return render(request, 'give_book.html', {'form': form, 'result':result})  
+    return render(request, 'give_book.html', {'isbn_form':qwerty, 'form': form,'result':result})  
 @login_required
 def bookpass(request,user_id):
     model=Books
     result=''
     user_ind = User.objects.get(pk=user_id)
-    if request.POST.get('scan') == '':
+    if request.POST.get('isbn_scan') == '':
+        
+        qwerty = IsbnBookForm(request.POST)
+        if qwerty.is_valid():
+           print('GOOOD')
+           isbn=qwerty.cleaned_data.get('quantity')
+           isbn= str(isbn)
+           form = user_ind.userinfo.hows_book.all()
+           for i in form:
+               if int(i.quantity)==int(isbn): 
+                   print('I am in if')
+                   book = Books.objects.get(quantity=i.quantity)
+                   print(book)
+                   book.status=0
+                   i.status=0
+                   user_ind.userinfo.debt-=1
+                   user_ind.save()
+                   i.save()
+                   book.save()
+                   #return HttpResponseRedirect('/users/information/'+str(user_ind.id))
+
+    elif request.POST.get('scan') == '':
         try:
             result = user_ind.userinfo.decode()
             form = user_ind.userinfo.hows_book.all()
@@ -261,9 +317,13 @@ def bookpass(request,user_id):
                     #return HttpResponseRedirect('/users/information/'+str(user_ind.id))
         except:
             result = 'Отсканируйте еще раз'
+
+    else:
+        print('BADDD')
+        qwerty=IsbnBookForm()
     user_ind.userinfo.hows_book=user_ind.userinfo.hows_book.filter(status=1)
     form = user_ind.id
-    return render(request, 'pass_book.html', {'form': form , 'result':result})  
+    return render(request, 'pass_book.html', {'isbn_form':qwerty, 'form': form , 'result':result})  
 
 @login_required
 def user_books_list(request):

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="nubex.css" media="screen" />
+  <link rel="stylesheet" href="nubexMobile.css" media="handheld" />
+  <meta charset="UTF-8">
+  <title>Новости</title>
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="/static//css/style.css">
+</head>
+<body>
+  <h1 style="color:white;" align = "center">Библиотека школы №444</h1> 
+  {% if user.is_superuser %}
+  {% include "admin_menu.html" %}
+  {%else%}
+  {% include "user_menu.html" %}
+  {% endif %}
+  {%for new in news_all%}
+    <div class="row">
+    <div class="example-2 card" >
+      <div class="wrapper" style='background: url(https://w-dog.ru/wallpapers/13/15/297387149762094.jpg) center / cover no-repeat;'>
+        <div class="header">
+          <div class="date">
+            {{new.data_pub}}
+          </div>
+        </div>
+        <div class="data">
+          <div class="content">
+            <span class="author">Администрация библиотеки</span>
+            <h1 class="title"><h1 href="#">{{new.title}}</h1></h1>
+            <p class="text">{{new.text_of_news}}</p>
+            <a href="#" class="button">Читать больше</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
+  
+  
+</body>
+</html>
+
+
