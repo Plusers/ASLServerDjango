@@ -1,0 +1,57 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<style>
+   .center {
+    width: 200px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: #fc0; /* Цвет фона */
+   }
+</style>
+<div class="center">
+  <h2>Авторизация в Школьной Библиотеке</h2>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% for field in form %}
+      <p>
+        {% if field.label == "Почта*" %}
+           <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                {{ field.label_tag }} {{ field }}<br>
+                {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+                {% endfor %}
+                {% if field.help_text %}
+                <p><small style="color: grey">{{ field.help_text }}</small></p>
+                {% endif %}
+                </p>
+              </div>
+          </div>
+        {% else %}
+          {{ field.label }}
+          {{ field.label_tag }}<br>
+          {{ field }}<br>
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+          {% if field.help_text %}
+            <p><small style="color: grey">{{ field.help_text }}</small></p>
+          {% endif %}
+          {% endif %}
+        </p>
+    {% endfor %}
+    <button href = '/login/'type="submit">Зарегестрироваться</button>
+    <a href = '/login/'>Войти</a>
+  </form>
+</div> 
+{% endblock %}
+<!--
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">@</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Имя пользователя" aria-label="Имя пользователя" aria-describedby="basic-addon1">
+</div>!-->
