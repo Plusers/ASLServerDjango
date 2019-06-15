@@ -101,9 +101,6 @@ class BooksListPass(LoginRequiredMixin, ListView):
 def general_page(request):
     return render(request, 'general_page.html')
 
-@login_required
-def testing(request):
-    return render(request, 'index.html')
 
 @login_required
 def news(request):

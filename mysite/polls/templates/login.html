@@ -10,7 +10,7 @@
    }
 </style>
 <div class="center">
-  <h2>Авторизация в Школьной Библиотеке</h2>
+  <h2 style="text-align: center">Авторизация в Школьной Библиотеке</h2>
   {% if form.errors %}
     <p style="color: red">Ваш логин или пароль введины неверно. Попробуйте еще раз.</p>
   {% endif %}
@@ -29,8 +29,11 @@
         {% endif %}
       </p>
     {% endfor %}
-    <button type="submit">Войти</button>
-    <a href="/signup/">Регистрация</a>
+    <!--<button type="submit">Войти</button>
+
+    <a href="/signup/">Регистрация</a>!-->
+    <button type="submit" style="font-size: 20px" class="btn btn-success">Войти</button>
+    <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Регистрация</a>
   </form>
 </div> 
 {% endblock %}

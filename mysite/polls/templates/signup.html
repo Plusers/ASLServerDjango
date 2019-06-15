@@ -10,28 +10,12 @@
    }
 </style>
 <div class="center">
-  <h2>Авторизация в Школьной Библиотеке</h2>
+  <h2 style="text-align: center ">Регистрация в Школьной Библиотеке</h2>
   <form method="post">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next }}" />
     {% for field in form %}
       <p>
-        {% if field.label == "Почта*" %}
-           <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                {{ field.label_tag }} {{ field }}<br>
-                {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-                {% endfor %}
-                {% if field.help_text %}
-                <p><small style="color: grey">{{ field.help_text }}</small></p>
-                {% endif %}
-                </p>
-              </div>
-          </div>
-        {% else %}
-          {{ field.label }}
           {{ field.label_tag }}<br>
           {{ field }}<br>
           {% for error in field.errors %}
@@ -40,11 +24,12 @@
           {% if field.help_text %}
             <p><small style="color: grey">{{ field.help_text }}</small></p>
           {% endif %}
-          {% endif %}
         </p>
     {% endfor %}
-    <button href = '/login/'type="submit">Зарегестрироваться</button>
-    <a href = '/login/'>Войти</a>
+    <!--<button href = '/login/'type="submit">Зарегестрироваться</button>!-->
+    <button href = '/login/' type="submit" style="font-size: 16px" class="btn btn-success">Зарегистрироваться</button>
+    <a href="/login/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Войти</a>
+    <!--<a href = '/login/'>Войти</a>!-->
   </form>
 </div> 
 {% endblock %}

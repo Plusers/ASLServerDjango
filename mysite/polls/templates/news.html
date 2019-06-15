@@ -2,6 +2,7 @@
 
 <html >
 <head>
+  <h1 style="color:white;" align = "center">Библиотека школы №444</h1>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="nubex.css" media="screen" />
   <link rel="stylesheet" href="nubexMobile.css" media="handheld" />
@@ -12,7 +13,6 @@
   <link rel="stylesheet" href="/static//css/style.css">
 </head>
 <body>
-  <h1 style="color:white;" align = "center">Библиотека школы №444</h1> 
   {% if user.is_superuser %}
   {% include "admin_menu.html" %}
   {%else%}
@@ -21,7 +21,7 @@
   {%for new in news_all%}
     <div class="row">
     <div class="example-2 card" >
-      <div class="wrapper" style='background: url(https://w-dog.ru/wallpapers/13/15/297387149762094.jpg) center / cover no-repeat;'>
+      <div class="wrapper" style='background: url({{new.link}}) center / cover no-repeat;'>
         <div class="header">
           <div class="date">
             {{new.data_pub}}
@@ -32,12 +32,13 @@
             <span class="author">Администрация библиотеки</span>
             <h1 class="title"><h1 href="#">{{new.title}}</h1></h1>
             <p class="text">{{new.text_of_news}}</p>
-            <a href="#" class="button">Читать больше</a>
+            <a href="#" class="button"></a>
           </div>
         </div>
       </div>
     </div>
   </div>
+<!--https://w-dog.ru/wallpapers/13/15/297387149762094.jpg!-->
   {%endfor%}
   
   

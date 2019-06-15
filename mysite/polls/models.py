@@ -15,9 +15,11 @@ from django.dispatch import receiver
 
 class News(models.Model):
     title = models.CharField(blank=False, null=True, verbose_name='Заголовок новости', max_length=200)
-    text_of_news = models.CharField(blank=False, null=True, verbose_name='Текс новости', max_length=200)
+    text_of_news = models.CharField(blank=False, null=True, verbose_name='Текст новости', max_length=200)
     data_pub = models.DateField('Дата публикации новости',null=True)
-
+    link = models.CharField(blank=False, null=True, verbose_name='Ссылка на фон новости', max_length=200)
+    def __str__(self):
+        return 'id:{}, Новость:{}'.format(self.id, self.title)
 
 BOOK=((1,'Учебник'), (2,'Художественная литература'))
 class Books(models.Model):
@@ -95,7 +97,6 @@ class UserInfo(models.Model):
             return 0
         else:
             return result
-
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

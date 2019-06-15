@@ -12,22 +12,23 @@
 {% include "results_search.html" %}
 
 {% for place in books %}
-    <div style="margin: 20px;">
-    	<div class="alert alert-info" role="alert" style="width: 400px">
-    	    <div style="color:black; font-family: Georgia, Arial">
+    <div class="card" style="width: 400px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ place.name }}</h5>
+        <p class="card-text">
             ID:{{place.id}}<br/>
-            ISBN-код:{{place.quantity}}<br/>
-    		Название: {{ place.name }} <br/>    		
+            ISBN-код:{{place.quantity}}<br/>         
             Автор: {{ place.author }}  <br/> 
-    		Класс: {{ place.clas }}  <br/>
-    		Номер издания: {{ place.num_izd }}  <br/>
-    		Название издания: {{ place.name_izd }} <br/>
+            Класс: {{ place.clas }}  <br/>
+            Номер издания: {{ place.num_izd }}  <br/>
+            Название издания: {{ place.name_izd }} <br/>
             Выдана книга: {{place.status}}</br>
-            Вид книги: {{place.options}} </br>
-            <a style="border-radius: 20px;" href="/books/qr-code/{{place.id}}">Подробнее</a>
-            </div>
-    	</div>
+        </p>
+        <a href="/books/qr-code/{{place.id}}" class="btn btn-primary">Подробнее</a>
+        </br>
+      </div>
     </div>
+    <h2></h2>
 {% empty %}
     <h1 style='color:white;'>В библиотеке нет таких книг</h1>
 {% endfor %}
