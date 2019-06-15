@@ -1,0 +1,62 @@
+/*
+
+Template: SEOhub - SEO, Marketing. Social Media, Multipurpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This is Color stylesheet of the template.
+
+*/
+*::-moz-selection { background: #db2d2e; }
+::-moz-selection { background: #db2d2e; }
+::selection { background: #db2d2e; }
+
+a:focus, a:hover { color: #000; }
+
+/*************************
+	     button
+*************************/
+.button.black:hover, .button.black.active, .button.border:hover, .button.border-bule:hover { background: #db2d2e; border-color: #db2d2e; }
+.button.border-bule, .button.white { border-color: #db2d2e; color: #db2d2e; }
+
+/*button with icon*/
+.button.arrow { color: #db2d2e; }
+
+/*HEADER*/
+#header.default .topbar, .mega-menu .menu-links > li .drop-down-multilevel li a:before, .mega-menu .menu-links > li.active .drop-down-multilevel li.active a:before, .mega-menu .menu-links > li .drop-down-multilevel li:hover a:before  { background: #db2d2e; }
+
+#header.default .topbar, #header.default .mega-menu .menu-links > li.active a, #header.default .mega-menu .menu-links > li.active .drop-down-multilevel li.active a, #header.default .mega-menu .menu-links > li.active li:hover a, .mega-menu .drop-down-multilevel li:hover > a, .mega-menu .menu-links > li:hover, #header.default .mega-menu .menu-links > li > a:hover, #header.default .mega-menu .menu-links > li .drop-down li:hover a, #header.topbar-dark .mega-menu .menu-links > li.active a, #header.transparent .mega-menu .menu-links > li.active .drop-down-multilevel li.active a, #header.transparent .mega-menu .menu-links > li .drop-down li:hover a, #header.transparent .mega-menu .menu-links > li.active .drop-down-multilevel li.active a, #header.transparent .mega-menu .menu-links > li.active .drop-down-multilevel li a:hover, #header.transparent .mega-menu .menu-links > li:hover .drop-down-multilevel li:hover a, #header.fancy .mega-menu .menu-links > li.active a, #header.fancy .mega-menu .menu-links > li > a:hover, #header.fancy .mega-menu .menu-links > li.active .drop-down-multilevel li a:hover, #header.fancy .mega-menu .menu-links > li.active .drop-down-multilevel li.active a, #header.fancy .mega-menu .menu-links > li.active .drop-down-multilevel li.active a, #header.fancy .mega-menu .menu-links > li:hover .drop-down-multilevel li:hover a, #header.fancy .mega-menu .menu-links > li .drop-down li:hover a, .sidebar-widgets-wrap .widget-link ul li a:hover, .sidebar-widgets-wrap .recent-item .recent-title a:hover, .product .product-price ins, .shop-single .product-detail .product-detail-price ins { color: #db2d2e; }
+
+
+mark, .search, .blue-bg, .map-location-tooltip span.tooltip-item:before, .map-location-tooltip .tooltip-content, .button, .accordion .acd-group.acd-active .acd-heading, .owl-carousel.owl-theme .owl-dots .owl-dot.active span, .owl-carousel.owl-theme .owl-dots .owl-dot:hover span, .fancy-team-tooltip .tooltip-item, .fancy-team-tooltip .tooltip-content, .footer, .newsletter.blue-bg, .our-story .play-video a:hover, .blog-entry.blockquote, .blog-entry.blockquote blockquote, .blog-entry.blockquote .blog-detail, .owl-carousel .owl-nav i:hover, .feature-box-02 .icon, .progress-bar-block .progress .progress-bar, .feature-box-03-bg-1, .accordion.icon .acd-group.acd-active .acd-heading span, .nav.nav-tabs > li.active > a, .nav.nav-tabs > li.active > a:focus, .nav.nav-tabs > li.active > a:hover, #header.fancy .topbar, .provide-services .play-video a:hover, .team.team-2 .team-description, .team.team-2 .team-social, .clients-box:hover, .social-icon li a:hover, .pricing.pricing-01.active .pricing-title:before, .pricing.pricing-01:hover .pricing-title:before, .blog-sidebar .sidebar-widget .tags li a:hover, .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover, .pagination li a:focus, .pagination li a:hover, .pagination li span:focus, .pagination li span:hover, .isotope-filters  button.active, .isotope-filters  button:hover, .menu-toggle-hamburger.menu-close span:hover, #scrollbar::-webkit-scrollbar-thumb, .progress-bar, .product .product-image .add-to-cart a { background: #db2d2e; }
+
+
+a, button, input, .text-blue, .feature-box-01 .feature-box-button .button.arrow:hover, .button.border-white:hover, ul.list-style-right li i, .pricing.active .pricing-title h5, .pricing.active .pricing-prize h2, .newsletter .button:hover, .footer .social ul li a i, #header.topbar-dark .header-info .info-box .info-icon span, .blog-entry .entry-meta ul li a i, .blog-entry .entry-meta ul li a:hover, .owl-carousel .owl-nav i, .footer.light .contact-box .contact-icon, .footer.light h6, .footer.light .copyright ul li a:hover, .footer.light .usefull-link ul li a:hover, .footer.light .footer-nav ul li a:hover, .footer.light .social ul li a i:hover, .form.white .button:hover, .accordion.icon .acd-group.acd-active .acd-heading, .accordion.icon .acd-heading span, ul.list-mark li:after, .footer.footer-bg .usefull-link ul li a:hover, .footer.footer-bg .footer-nav ul li a:hover, .footer.footer-bg .social ul li a i:hover, #header.topbar-dark .mega-menu .menu-links > li.active .drop-down-multilevel li.active a, #header.topbar-dark .mega-menu .menu-links > li:hover .drop-down-multilevel li:hover a, #header.topbar-dark .mega-menu .menu-links > li .drop-down li:hover a, .provide-services .feature-box-02 .icon i, ul.list-style-icon li span, .counter.light span, .social-icon li a, .accordion.simple.black .acd-group.acd-active .acd-heading, .pricing.pricing-01:hover .pricing-prize h2, .pricing.pricing-01.active .pricing-prize h2, .blog-sidebar .recent-post-info a:hover, .blog-sidebar .widget-link ul li a:hover, .comments-1 .comments-info h6, .comments-1 .comments-info a, .navigation-next:hover span, .navigation-previous:hover span, .studies-entry .entry-content a:hover, .studies-entry .entry-tag li a:hover, .rev-btn.button.white, .intro-title .breadcrumb li a:hover { color: #db2d2e; }
+
+.side-content-image { background:#db2d2e; }
+
+.newsletter.blue-bg:before { background: url(../../images/color-customizer-bg/bg-red.png) no-repeat 0 0;}
+.map-location-tooltip .tooltip-item, .button, .our-story .play-video a:hover, .owl-carousel .owl-nav i:hover, .provide-services .play-video a:hover, .form-control:focus, .button.border:hover, .blog-sidebar .sidebar-widget .tags li a:hover, .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover, .pagination li a:focus, .pagination li a:hover, .pagination li span:focus, .pagination li span:hover { border-color: #db2d2e; }
+
+
+.feature-box-03-bg-2 { background: #cd2223; }
+.feature-box-03-bg-3 { background: #bd1617; }
+.accordion.simple.black .acd-group.acd-active .acd-heading { background: none; }
+.owl-carousel .owl-nav i:hover { color: #fff; }
+.team:before { background: rgba(219, 45, 46, 0.90); }
+.blog-entry.blockquote .entry-meta ul li a:hover, .button.arrow.white:hover, .blog-entry.blockquote .social ul li a:hover { color: #000; }
+.map-location-tooltip .tooltip-content::after { border-right-color: #db2d2e; }
+.fancy-team-tooltip .tooltip-content::after { border-top-color: #db2d2e; }
+.studies-entry .entry-image .entry-overlay { background: rgba(219, 45, 46, 0.80); }
+
+/*Slider*/
+#rev_slider_17_1_wrapper .tp-bgimg.defaultimg, .rev-slidebg.color-bg,#rev_slider_14_1 li[data-index='rs-47'] .tp-bgimg.defaultimg { background:#db2d2e !important; }
+#rev_slider_15_1 #slide-49-layer-4, #rev_slider_15_1 #slide-51-layer-4, #rev_slider_14_1_forcefullwidth #slide-46-layer-1, #rev_slider_14_1_forcefullwidth #slide-46-layer-5, #rev_slider_14_1_forcefullwidth #slide-48-layer-4 { color: #db2d2e !important; }
+#rev_slider_15_1 .zeus.tparrows { background: rgba(219, 45, 46, 0.50); }
+#rev_slider_16_1 .tp-revslider-slidesli:after { background: rgba(219, 45, 46, 0.8); }
+
+.rev-btn.button.white:hover { color: #fff; }
+
+/*Footer*/
+.footer .copyright { background: rgba(0, 0, 0, 0.5); }
+.rev-btn.button.black:hover { background: #fff; color: #353535; }

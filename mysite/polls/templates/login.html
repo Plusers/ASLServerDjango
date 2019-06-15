@@ -1,0 +1,40 @@
+{% extends "base1.html" %}
+
+{% block content %}
+<style>
+   .center {
+    width: 200px; /* Ширина элемента в пикселах */
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    background: #fc0; /* Цвет фона */
+   }
+</style>
+<div class="center">
+  <h2 style="text-align: center">Авторизация в Школьной Библиотеке</h2>
+  {% if form.errors %}
+    <p style="color: red">Ваш логин или пароль введины неверно. Попробуйте еще раз.</p>
+  {% endif %}
+  <form  method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        {% if field.help_text %}
+          <p><small style="color: grey">{{ field.help_text }}</small></p>
+        {% endif %}
+      </p>
+    {% endfor %}
+    <!--<button type="submit">Войти</button>
+
+    <a href="/signup/">Регистрация</a>!-->
+    <button type="submit" style="font-size: 20px" class="btn btn-success">Войти</button>
+    <a href="/signup/" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Регистрация</a>
+  </form>
+</div> 
+{% endblock %}
+
