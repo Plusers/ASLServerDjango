@@ -1,6 +1,7 @@
 from django.views.generic.list import ListView
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils import timezone
+from django.contrib.auth.models import Group
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
@@ -16,6 +17,7 @@ from django.conf import settings
 import pandas as pd
 from xlrd import *
 import xlrd 
+import collections as coll
 import os
 from django.contrib.auth.models import User
 from mysite.polls.forms import *
@@ -27,6 +29,8 @@ from django.views.generic import ListView
 from django.db.models import Q
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
+from rest_framework import viewsets
+from .serializers import BooksSerializer, UsersSerializer
 
 #--------------------CHECKING------------------------
 
@@ -64,10 +68,10 @@ class BooksList(LoginRequiredMixin, ListView):
     print("------------START----------------")
     model = Books
     template_name = "books_list_unpass.html"
-    Books.create("a","a","a","a","a")
     def get_context_data(self, **kwargs):
         #
         context = super(BooksList, self).get_context_data()
+
 
         #context = super().get_context_data(**kwargs)
         context['books'] = Books.objects.filter(status=0)
@@ -75,14 +79,31 @@ class BooksList(LoginRequiredMixin, ListView):
         return context
 
 class BooksListAll(LoginRequiredMixin, ListView):
+    mas_of_all_books=[]
+    for book in Books.objects.all():
+        final_str=str(book.name)+" "+str(book.author)+" "+str(book.clas)
+        mas_of_all_books.append(final_str)
+    final_massive = coll.Counter(mas_of_all_books)
+    print(final_massive)
+    for book in Books.objects.all():
+        groups=BooksGroups()
+        name= book.name
+        author = book.author
+        clas = book.clas
+        search_str = str(book.name)+" "+str(book.author)+" "+str(book.clas)
+        groups.name = name
+        groups.author = author
+        groups.clas = clas
+        groups.quantity = int(final_massive[search_str])
+        groups.save()
     model = Books
     template_name = "books_list.html"
     def get_context_data(self, **kwargs):
         #
         context = super(BooksListAll, self).get_context_data()
 
-        #context = super().get_context_data(**kwargs)
-        context['books'] = Books.objects.all()
+        #context = super().get_context_data(quantity=1)
+        context['books'] = Books.objects.filter()  
 
         return context
 
@@ -394,7 +415,8 @@ def bookadd(request):
                         ger.save()
                 finish = time.time()
                 result = finish-start
-                
+
+
             '''
             quantity=qwerty.cleaned_data.get('quantity')
             #index = Books_model.objects.count()
@@ -427,7 +449,7 @@ def bookadd(request):
                 ger.save()
                 '''
             return HttpResponseRedirect('/books/all/')
-            
+
         '''
         qwerty = BooksForm(request.POST)
         if qwerty.is_valid():
@@ -439,9 +461,9 @@ def bookadd(request):
         return HttpResponseRedirect('/')
         '''
     else:
-        #tom=BooksForm()
-        qwerty = BooksForm()
-    return render(request, 'add_book.html', {'form': qwerty})
+        newbook = BooksForm()
+        #qwerty = BooksForm()
+    return render(request, 'add_book.html', {'form': newbook})
     
 
 def signup(request):
@@ -514,6 +536,8 @@ class PlaceListView(ListView):
 
 class UsersListView(ListView):
     model = User
+    #g=Group.objects.get(name = '11')
+
     #u = User.objects.get(pk=1) # Get the first user in the system
     #mobile = u.userinfo.third_name
     #print(mobile)
@@ -534,6 +558,21 @@ class UsersListView(ListView):
 class UsersAdd(CreateView):
     model = User
     fields = '__all__'
+
+#Serializing
+#@login_required
+class BooksViewSet(viewsets.ModelViewSet):
+    queryset = Books.objects.all()
+    serializer_class = BooksSerializer
+#@login_required
+class UsersViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
+
+
+
+
+
 
 print('START CHECKING')
 users = User.objects.all()

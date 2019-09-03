@@ -3,34 +3,33 @@
   body {background-size: contain;}
 </style>
 {% block content %}
-<h1  style="color:white;" align = "center">Книги</h1>
+<h1  style="color:#456765;" align = "center">Невыданные книги</h1>
 <form action="{% url 'books_search' %}" method="GET">
-    <input style="border-radius: 20px;" type="text" name="q"/>
-    <button style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit">Поиск по названию или автору книги</button>
+    <input style="margin-left: 1.5em; ; border-radius: 10px; width: 20em" type="text" name="q"/>
+    <button style="border-radius: 10px; background-color: #46c9ba" type="submit" class="mdl-button mdl-js-button mdl-button--raised">
+        <i class="material-icons">search</i>
+    </button>
 </form>
-
+<h2></h2>
 {% include "results_search.html" %}
-
 {% for place in books %}
-    <div class="card" style="width: 400px;">
-      <div class="card-body">
-        <h5 class="card-title">{{ place.name }}</h5>
-        <p class="card-text">
-            ID:{{place.id}}<br/>
-            ISBN-код:{{place.quantity}}<br/>         
-            Автор: {{ place.author }}  <br/> 
-            Класс: {{ place.clas }}  <br/>
-            Номер издания: {{ place.num_izd }}  <br/>
-            Название издания: {{ place.name_izd }} <br/>
-            Выдана книга: {{place.status}}</br>
-        </p>
-        <a href="/books/qr-code/{{place.id}}" class="btn btn-primary">Подробнее</a>
-        </br>
-      </div>
-    </div>
-    <h2></h2>
+  
+        <div class="mdl-card" style="float: left; margin-left: 1em; margin-bottom: 1em; background-color: #456765; border-radius: 5px">
+          <div class="card-body">
+            <h4 class="mdl-card__title" style="color: white">Название книги: {{ place.name }}</h4>
+            {% load staticfiles %}
+            <img src="/static/books.jpeg" style="width: 100%">
+                <form action="/books/qr-code/{{place.id}}">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" >
+                    Подробнее
+                </button>
+                </form>
+                </br>
+              </div>
+            </div>
+            <h2></h2>
 {% empty %}
-    <h1 style='color:white;'>В библиотеке нет таких книг</h1>
+    <h1 style='color:#456765;'>В библиотеке все книги выданы ученикам</h1>
 {% endfor %}
 
 {% endblock %}

@@ -2,22 +2,69 @@
 
 {% block content %}
 {% if request.user.is_superuser %}
-	<h1  style="color:white;" align = "center"></h1>
-	<div class='alert alert-info'>
-	    <h1>QR-код</h1>
-		{% load staticfiles %}
-		<img src="/static/{{filename}}">
-		<!--<form action="/books/{{ book_id.id }}/update">
-	    	<input style="border-radius: 20px; background-color: yellow; font-size: 1.7em;" type="submit" value="Изменить книгу"/>
-		</form>!-->
+	<script type="text/javascript">
+	function PrintElem(elem)
+	{
+	Popup($(elem).html());
+	}
+	function Popup(data)
+	{
+	var mywindow = window.open('', 'my div', 'height=400,width=600');
+	mywindow.document.write('<html><head><title>my div</title>');
+	mywindow.document.write('</head><body >');
+	mywindow.document.write(data);
+	mywindow.document.write('</body></html>');
+	mywindow.document.close(); // necessary for IE >= 10
+	mywindow.focus(); // necessary for IE >= 10
+	mywindow.print();
+	mywindow.close();
+	return true;
+	}
+	</script>
+	<style type="text/css">
+		.div1 { display: inline; float: left; }
+	</style>
+	<h1  style="color:#456765;" align = "center">Подробная информация</h1>
+	<div class="div1">
+		<div class='alert alert-info'>
+			<h2 style="background-color: #">
+						ID: {{book_id.id}}<br/>
+	                    Колчество: {{book_id.quantity}}<br/>         
+	                    Автор: {{ book_id.author }}  <br/> 
+	                    Класс: {{ book_id.clas }}  <br/>
+	                    Номер издания: {{ book_id.num_izd }}  <br/>
+	                    Название издания: {{ book_id.name_izd }} <br/>
+	                    Выдана книга: {{book_id.status}}</br>
+
+	        </h2>
+		</div>
+	</div>
+
+	<div class="div1">
+		<div class="alert alert-info">
+			<h1>QR-код</h1>
+			    <div id = "mydivprint">
+					{% load staticfiles %}
+					<img src="/static/{{filename}}">
+				</div>
+		</div>
+	</div>
+
+
+		<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 2em; margin-top: 0.3em" type = 'submit' onclick="PrintElem('#mydivprint')">
+	    		Распечатать <i class="material-icons">print</i>
+	    </button> 
+
 		<form action="/books/{{ book_id.id }}/delete">
-	    	<button style="border-radius: 20px; background-color: red; font-size: 1.7em;" type = 'submit'>Удалить</button>
+	    	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+	    		Удалить <i class="material-icons">delete_forever</i>
+	    	</button>
 		</form>
-		<form class ="print-doc" action = "javascript:(print());">
-		<button style="border-radius: 20px; background-color: pink; font-size: 1.7em;"type = 'submit'>Распечатать</button>
-		</form>
-		<form action="/books/list/">
-	    <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.7em;" type="submit" value="Назад" />
+
+		<form action="/books/all/">
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+	    		Вернуться назад <i class="material-icons">undo</i>
+	    </button>
 		</form>
 	</div>
 {% else %}

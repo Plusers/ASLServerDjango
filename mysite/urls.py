@@ -19,7 +19,7 @@ urlpatterns = [
 
     url(r'^logout/$', auth_views.logout, {'next_page': 'login'}, name='logout'),
     url(r'^signup/$', signup,name='signup'),
-
+    url(r'^api/', include('mysite.polls.urls', namespace='api')),
     url(r'^users/list/$',UsersListView.as_view() , name='users_list'),#admin
     url(r'^users/list-pass/$',UsersListpass.as_view() , name='users_list_pass'),#admin
     url(r'^users/books/$',user_books_list , name='user_books_list'),#admin
@@ -34,4 +34,9 @@ urlpatterns = [
     url(r'^users_search/$', UsersListView.as_view(), name='users_search'),#admin
     url(r'^admin/', admin.site.urls),
     ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

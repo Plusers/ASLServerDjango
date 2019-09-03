@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 {% if request.user.is_superuser %}
+<h1  style="color:#456765;" align = "center">Добавить новую книгу</h1>
 <div class='alert alert-info'>
 	<form method="post">
 		{% csrf_token %}
 	    {{ form.as_p }}
-	    <button style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" href = '/' type = 'submit'>Добавить</button>
+	    <form action="/">
+	    	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+	    		Добавить книгу <i class="material-icons">add</i>
+	    	</button>
+	</form>
 	    
 	</form>
 </div>

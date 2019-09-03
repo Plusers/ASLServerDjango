@@ -13,18 +13,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
     integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
-    <!--<script src="https://uguide.ru/js/script/ok4.js" type="text/javascript"></script>!-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous">
-  </script>
-
-
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.1.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <style>
-  body {background-image:  url(https://upload.wikimedia.org/wikipedia/commons/e/e4/Interior_view_of_Stockholm_Public_Library.jpg); background-size: contain;border-radius: 5px;}
-  h1{color:black;}
-</style>
+    {% load staticfiles %}
+    body {background: "/static/library.jpeg"; background-size: contain;border-radius: 5px;}
+    h1{color:black;}
+  </style>
     <title>
       {% block title %}
         ASL
@@ -37,17 +38,11 @@
         <div aria-busy="true" aria-label="Loading, please wait." role="progressbar"></div>
       </header>
 
-      <h1 style="color:white;" align = "center">Библиотека школы №444</h1> 
+      <h1 style="color:#456765;" align = "center">Библиотека школы №444</h1> 
       {% if user.is_superuser %}
       {% include "admin_menu.html" %}
       {%else%}
       {% include "user_menu.html" %}
-      {% endif %}
-
-      {% if user.is_authenticated %}
-        <!--<a href="{% url 'logout' %}">logout</a>-->
-      {% else %}
-        
       {% endif %}
       <hr>
     </header>

@@ -4,8 +4,6 @@
 }
 
 body {
-  background-image: -webkit-linear-gradient(left, #034378, #2d4e68);
-  background-image: linear-gradient(to right, #034378, #2d4e68);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -17,8 +15,9 @@ a {
 }
 
 h1 {
-  font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-size: 56px;
+ font-family: "Roboto","Helvetica","Arial",sans-serif;
+ font-weight: 400;
 }
 
 .row {
@@ -205,6 +204,7 @@ h1 {
 }
 
 .example-2 .wrapper {
+
   background: url(https://w-dog.ru/wallpapers/13/15/297387149762094.jpg) center/cover repeat;
 }
 .example-2 .wrapper:hover .menu-content span {

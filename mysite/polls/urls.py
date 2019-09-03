@@ -1,6 +1,11 @@
 from django.conf.urls import url
-
+from rest_framework import routers
 from .views import *
+
+router = routers.DefaultRouter()
+router.register(r'books', BooksViewSet)
+router.register(r'users', UsersViewSet)
+
 
 
 urlpatterns = [
@@ -15,3 +20,5 @@ urlpatterns = [
     url(r'^pass/$', BooksListPass.as_view(), name='bookslistpass'), #выданные книги
     url(r'^qr-code/(?P<book_id>[0-9]+)/$', generate_qr, name='generateqr'),    
 ]
+
+urlpatterns += router.urls

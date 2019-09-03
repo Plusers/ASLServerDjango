@@ -1,15 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
+
 {% if request.user.is_superuser %}
+	<h1  style="color:#456765;" align = "center">Функции</h1>
+	<form action="/users/{{user_id.id}}/add/">
+	    	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+	    		Выдать книги <i class="material-icons">turned_in</i>
+	    	</button>
+	</form>
+
+	<form action="/users/{{user_id.id}}/pass/">
+	    	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+	    		Сдать книги <i class="material-icons">turned_in_not</i>
+	    	</button>
+	</form>
+	
+
+	<h1  style="color:#456765;" align = "center">Информация о ученике</h1>
 	<div class='alert alert-info'>
-		<h1>Пользователь:</h1>
-		<h1>ID: {{ user_id.id }}</h1>
-		<h1>Логин: {{ user_id.username}}</h1>
-		<h1>Имя: {{ user_id.first_name }}</h1>
-		<h1>Фамилия: {{ user_id.last_name }}</h1>
-		<h1>Почта: {{ user_id.email }}</h1>
-		<h1>Задолжностей: {{ user_id.userinfo.debt }}</h1>
-		<h1>Выданы книги:<br/>
+		<h4>Пользователь:</h4>
+		<h4>ID: {{ user_id.id }}</h4>
+		<h4>Логин: {{ user_id.username}}</h4>
+		<h4>Имя: {{ user_id.first_name }}</h4>
+		<h4>Фамилия: {{ user_id.last_name }}</h4>
+		<h4>Почта: {{ user_id.email }}</h4>
+		<h4>Задолжностей: {{ user_id.userinfo.debt }}</h4>
+		<h4>Выданы книги:<br/>
 		{% for u in user_id.userinfo.hows_book.all %}
   			<a href='/books/qr-code/{{u.id}}/'>{{ u }}</a>
 
@@ -17,19 +33,15 @@
 		
 
 
-	<form action="/users/{{user_id.id}}/add/">
-	    <input style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit" value="Выдать книги"/>
-	</form>
-	<form action="/users/{{user_id.id}}/pass/">
-	    <input style="border-radius: 20px; background-color: #05f7c7; font-size: 1.3em;" type="submit" value="Сдать книги"/>
-	</form>
 	<form action="/users/list/">
-	    <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.3em;" type="submit" value="Назад" />
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 1em; margin-top: 0.3em" type = 'submit'>
+	    		Вернуться назад <i class="material-icons">undo</i>
+	    </button>
 	</form>
 	</div>
 {% else %}
 	<div class='alert alert-info'>
-		<h1>К сожалению вы не обладаете правами администратора</h1>
+		<h2>К сожалению вы не обладаете правами администратора</h2>
 	</div>
 {% endif %}
 {% endblock %}

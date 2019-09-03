@@ -18,10 +18,11 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=30, required=False,label='Почта*')
     first_name = forms.CharField(max_length=30, required=False,label='Имя*')
     last_name = forms.CharField(max_length=30, required=False,label='Фамилия*')
+    groups = forms.CharField(max_length=30, required=False,label='Класс*')
     password1 = forms.CharField(widget=forms.PasswordInput,max_length=30, required=False,label='Пароль*')
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name','password1', 'password2', )
+        fields = ('username', 'email', 'first_name', 'last_name','groups', 'password1', 'password2', )
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
@@ -34,7 +35,7 @@ class BooksForm(forms.ModelForm):
     num_izd = forms.CharField(label='Номер издания', required=False, max_length=100)
     name_izd = forms.CharField(label='Название издания', required=False, max_length=100)
     #pub_date = forms.DateField('Дата добавления')
-    quantity = forms.CharField(label='ISBN-код')
+    #quantity = forms.IntegerField(label='Количество книг')
    # options = forms.ChoiceField(choices=BOOK, label='Вид книги:')
 
     class Meta:

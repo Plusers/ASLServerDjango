@@ -17,9 +17,19 @@ class News(models.Model):
     title = models.CharField(blank=False, null=True, verbose_name='Заголовок новости', max_length=200)
     text_of_news = models.CharField(blank=False, null=True, verbose_name='Текст новости', max_length=200)
     data_pub = models.DateField('Дата публикации новости',null=True)
-    link = models.CharField(blank=False, null=True, verbose_name='Ссылка на фон новости', max_length=200)
+    #link = models.CharField(blank=False, null=True, verbose_name='Ссылка на фон новости', max_length=200)
     def __str__(self):
         return 'id:{}, Новость:{}'.format(self.id, self.title)
+
+class BooksGroups(models.Model):
+    indexs = models.CharField(blank=True, null=False, max_length=200, verbose_name='Индексы всех книг')
+    quantity = models.IntegerField(blank=False, null=False, verbose_name='Количество книг')
+    name = models.CharField(blank=False, null=False, max_length=200, verbose_name='Наименование')
+    author = models.CharField(blank=False, null=False, max_length=200, verbose_name='Предмет')
+    clas = models.CharField(blank=True, null=False, max_length=200, verbose_name='Класс',default = '')
+
+    def __str__(self):
+        return 'id:{}, Название:{},Автор:{},Класс:{}'.format(self.id, self.name,self.author,self.clas)
 
 BOOK=((1,'Учебник'), (2,'Художественная литература'))
 class Books(models.Model):
@@ -31,7 +41,7 @@ class Books(models.Model):
     give_date = models.DateField('Дата выдачи',null=True)
     pass_date = models.DateField('Дата сдачи',null=True)
     type_of_book = models.IntegerField(choices=BOOK, default=1, verbose_name='Вид книги')
-    quantity = models.CharField(blank=False, null=False, verbose_name=' ISBN-код', max_length=200)
+    quantity = models.IntegerField(blank=False, null=False, verbose_name='Количество книг')
     #dop_id = models.CharField()
     #qr_code_image = models.ImageField(upload_to='images/', null=False, blank=True)
     status = models.IntegerField(null = False,blank = False, verbose_name='Выдана книга(1) или нет(0)', default=0)
@@ -67,6 +77,7 @@ class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hows_book = models.ManyToManyField(Books)
     debt = models.IntegerField(blank=True, null=False, verbose_name='Задолжность',default=0)
+    #groups = models.CharField(blank=True, null=False, max_length=200, verbose_name='Класс обьучения',default='')
     #face = models.ImageField(upload_to='images/', null=False, blank=True)
     
     

@@ -2,12 +2,17 @@
 
 {% block content %}
 {% if request.user.is_superuser %}
-    <h1  style="color:white;" align = "center">Ученики</h1>
+    <h1  style="color:#456765;" align = "center">Ученики с задолжностями</h1>
     <form action="{% url 'users_search' %}" method="GET">
-        <input style = 'border-radius: 20px;' type="text" name="fename" />
-        <button style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit">Поиск по фамилии</button>
-        <input style = 'border-radius: 20px;' type="text" name="nickname" />
-        <button style="border-radius: 20px; background-color: yellow; font-size: 1.3em;" type="submit">Поиск по логину</button>
+        <input style="margin-left: 1.5em;  border-color:#456765; border-radius: 10px; width: 20em" type="text" name="fename"/>
+        <button style="border-radius: 10px; background-color: #46c9ba" type="submit" class="mdl-button mdl-js-button mdl-button--raised">
+            Поиск по фамилии <i class="material-icons">search</i>
+        </button>
+
+        <input style="margin-left: 1.5em; border-color:#456765; border-radius: 10px; width: 20em" type="text" name="nickname"/>
+        <button style="border-radius: 10px; background-color: #46c9ba" type="submit" class="mdl-button mdl-js-button mdl-button--raised">
+            Поиск по логину <i class="material-icons">search</i>
+        </button>
     </form>
 
     {% include "results_search.html" %}

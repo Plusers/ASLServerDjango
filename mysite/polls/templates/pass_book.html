@@ -1,28 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
 {% if request.user.is_superuser %}
-<div class='alert alert-info'>
+<div class='alert alert-info' style="color: #456765">
 	<form method="post">
 		{% csrf_token %}
-    <h1>Чтобы правильно отсканировать воспользуйтесь видеоинструкцией</h1>
-    <img src="/static/media/images/gifprocess.gif"></br>
-    <button name='scan' style="border-radius: 20px; background-color: yellow; font-size: 2.0em;" type = 'submit'>Сканировать</button>
-  </form>
-  <form method="post">
+    <button name="scan" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+          Сканировать QR-код <i class="material-icons">camera</i>
+      </button> 
+    </form>
+    <form method="post">
     {% csrf_token %}
-    <button name='isbn_scan' style="border-radius: 20px; background-color: yellow; font-size: 2.0em;" type = 'submit'>Isbn</button>
-    <h1>{{isbn_form}}</h1>
+    <h3>{{isbn_form}}</h3>
   </form>
-  <h1>ID книги которую вы сдали:{{result}}</h1>
-  <form action="/users/information/{{form}}">
-      <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.7em;" type="submit" value="Назад" />
+    <h2>ID книги которую вы сдали:{{result}}</h2>
+    <form action="/users/information/{{form}}">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+          Вернуться назад <i class="material-icons">undo</i>
+      </button>
     </form>
 </div>
 {% else %}
 	<div class='alert alert-info'>
-		<h1>К сожалению вы не обладаете правами администратора</h1>
-    <form action="/users/information/{{form}}">
-      <input style="border-radius: 20px; background-color: #e594eb; font-size: 1.7em;" type="submit" value="Назад" />
+		<h2>К сожалению вы не обладаете правами администратора</h2>
+    <form action="/">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
+          Вернуться назад <i class="material-icons">undo</i>
+      </button>
     </form>
 	</div>
 {% endif %}
