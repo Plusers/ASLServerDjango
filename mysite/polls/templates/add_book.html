@@ -6,11 +6,12 @@
 	<form method="post">
 		{% csrf_token %}
 	    {{ form.as_p }}
+	    <button name='table' style="border-radius: 20px;" type = 'submit'>Импортировать таблицу</button>
 	    <form action="/">
 	    	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="font-size: 2em; margin-top: 0.3em" type = 'submit'>
 	    		Добавить книгу <i class="material-icons">add</i>
 	    	</button>
-	</form>
+		</form>
 	    
 	</form>
 </div>

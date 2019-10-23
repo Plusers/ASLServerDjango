@@ -42,6 +42,7 @@ def generate_qr(request, book_id):
     book_id = Books.objects.get(pk=book_id)
     filename = book_id.generate()
     user = User.objects.all()
+    book_id.num_izd = book_id.num_izd[:len(book_id.num_izd)-2]
     return render(request, 'generate_qr.html', {'book_id': book_id, 'filename':filename})
 
 def user_infromation(request,user_id):
@@ -79,23 +80,25 @@ class BooksList(LoginRequiredMixin, ListView):
         return context
 
 class BooksListAll(LoginRequiredMixin, ListView):
-    mas_of_all_books=[]
-    for book in Books.objects.all():
-        final_str=str(book.name)+" "+str(book.author)+" "+str(book.clas)
-        mas_of_all_books.append(final_str)
-    final_massive = coll.Counter(mas_of_all_books)
-    print(final_massive)
-    for book in Books.objects.all():
-        groups=BooksGroups()
-        name= book.name
-        author = book.author
-        clas = book.clas
-        search_str = str(book.name)+" "+str(book.author)+" "+str(book.clas)
-        groups.name = name
-        groups.author = author
-        groups.clas = clas
-        groups.quantity = int(final_massive[search_str])
-        groups.save()
+    #Counter of books 
+    # mas_of_all_books=[]
+    # for book in Books.objects.all():
+    #     final_str=str(book.name)+" "+str(book.author)+" "+str(book.clas)
+    #     mas_of_all_books.append(final_str)
+    # final_massive = coll.Counter(mas_of_all_books)
+    # print(final_massive)
+
+    # for book in Books.objects.all():
+    #     groups=BooksGroups()
+    #     name= book.name
+    #     author = book.author
+    #     clas = book.clas
+    #     search_str = str(book.name)+" "+str(book.author)+" "+str(book.clas)
+    #     groups.name = name
+    #     groups.author = author
+    #     groups.clas = clas
+    #     groups.quantity = int(final_massive[search_str])
+    #     groups.save()
     model = Books
     template_name = "books_list.html"
     def get_context_data(self, **kwargs):
@@ -256,7 +259,7 @@ def bookgive(request,user_id):
                 print('Художественная литература')
                 today = datetime.date.today()
                 print(today)
-                book.pass_date = datetime.date.today()+timedelta(days=7)
+                book.pass_date = datetime.date.today()+timedelta(days=q)
                 print('SOOO GOOD')
                 book.save()
 
@@ -280,7 +283,7 @@ def bookgive(request,user_id):
             elif str(book.type_of_book) == '2':
                 print('Художественная литература')
                 today = datetime.date.today()
-                book.pass_date = datetime.date(today.year, today.mounth, today.day+7)
+                book.pass_date = datetime.date(today.year, today.mounth, today.day+q)
                 print('SOOO GOOD')
                 book.save()
             user_ind.save()
@@ -369,13 +372,13 @@ def bookadd(request):
     if request.method == 'POST':
         qwerty = BooksForm(request.POST)
         if qwerty.is_valid():
-            qwerty.pass_date = datetime.date.today()
-            qwerty.give_date = datetime.date.today()
+            #qwerty.pass_date = datetime.date.today()
+            #qwerty.give_date = datetime.date.today()
             qwerty.save()
             if request.POST.get('table') == '':
                 start = time.time()
                 ger = Books()
-                rb = xlrd.open_workbook('/home/vladislav/Загрузки/tablewithbooks.xlsx')
+                rb = xlrd.open_workbook('/home/proger/Документы/table_with_books.xlsx')
                 sheet = rb.sheet_by_index(0)
                 row=[]
                 for i in range(1,sheet.nrows):
@@ -384,86 +387,51 @@ def bookadd(request):
                 index = Books.objects.count()#последний индекс книги
                 index+=1
                 d=0
-                #6-колиство книг
-                #1-наименование
-                #2-прежмет
-                #0-класс
+                #index of column in the table:
+
+                #4-колиство книг
+                #0-наименование
+                #1-прежмет
+                #2-класс
                 #3-издательство
+                n = 0 #name of book
+                l = 1 #lesson
+                c = 2 #class
+                y = 3 #year of book
+                q = 4 #quantity
                 for i in range(0,len(row)):
-                    if int(row[i][7]==0):#количество
+                    if int(row[i][q]==0):#количество
                         d=1
-                    elif int(row[i][7])>1 and (int(row[i][0]==10) or int(row[i][0]==11)):#количество
-                        for j in range(0,int(row[i][7])):#количество
+                    elif int(row[i][q])>1: #and (int(row[i][0]==10) or int(row[i][0]==11)):#количество
+                        for j in range(0,int(row[i][q])):#количество
                             index+=1
                             ger.id = index
-                            ger.name = row[i][1]#Наименование
-                            ger.author = row[i][2]#предмет
-                            ger.clas = row[i][0]#класс
-                            ger.num_izd='Нет'
-                            ger.name_izd = row[i][3] #издательство
+                            ger.name = row[i][n]#Наименование
+                            ger.author = row[i][l]#предмет
+                            ger.clas = row[i][c]#класс
+                            ger.num_izd= row[i][y]#год издания
+                            #ger.name_izd = '' #издательство
                             ger.quantity=1
                             ger.save()
-                    elif int(row[i][7])==1:
+                    elif int(row[i][q])==1:
                         index+=1
                         ger.id = index
-                        ger.name = row[i][1]
-                        ger.author = row[i][2]
-                        ger.clas = row[i][0]
-                        ger.num_izd='Нет'
-                        ger.name_izd = row[i][3]
+                        ger.name = row[i][n]
+                        ger.author = row[i][l]
+                        ger.clas = row[i][c]
+                        ger.num_izd=row[i][y]
+                        #ger.name_izd = row[i][3]
                         ger.quantity=1
                         ger.save()
                 finish = time.time()
                 result = finish-start
+                print('Минут:',result//60,'Секунд:',result%60)
 
-
-            '''
-            quantity=qwerty.cleaned_data.get('quantity')
-            #index = Books_model.objects.count()
-            index = Books.objects.count()
-            if index==0:
-                index+=1
-            #tom=Books_model()
-            ger=Books()
-            for i in range(index,quantity+index+1):
-                tom.id=i
-                tom.name=qwerty.cleaned_data.get('name')
-                tom.author=qwerty.cleaned_data.get('author')
-                tom.clas = qwerty.cleaned_data.get('clas')
-                tom.num_izd=qwerty.cleaned_data.get('num_izd')
-                tom.name_izd=qwerty.cleaned_data.get('name_izd')
-                tom.status=0
-                tom.quantity=0
-                tom.save()
-            if quantity>=1:
-                ind=Books.objects.count()
-                if ind==0:
-                    ind+=1
-                ger.id=ind
-                ger.name=tom.name
-                ger.author = tom.author
-                ger.clas = tom.clas
-                ger.num_izd=tom.num_izd
-                ger.name_izd = tom.name_izd
-                ger.quantity=quantity
-                ger.save()
-                '''
             return HttpResponseRedirect('/books/all/')
-
-        '''
-        qwerty = BooksForm(request.POST)
-        if qwerty.is_valid():
-            quantity=qwerty.cleaned_data.get('quantity')
-            print(Books.create('qwerty','','','',''))
-            Books.objects.create(1,'qwe')
-            qwerty.save()
-            print('Soo Good')
-        return HttpResponseRedirect('/')
-        '''
     else:
-        newbook = BooksForm()
-        #qwerty = BooksForm()
-    return render(request, 'add_book.html', {'form': newbook})
+        #newbook = BooksForm()
+        qwerty = BooksForm()
+    return render(request, 'add_book.html', {'form': qwerty})
     
 
 def signup(request):

@@ -5,7 +5,7 @@ from django.forms import SelectMultiple
 from .models import *
 admin.site.register(Books)
 admin.site.register(News)
-admin.site.register(BooksGroups)
+#admin.site.register(BooksGroups)
 #admin.site.register(Books_model)
 # Re-register UserAdmin
 class UserInline(admin.StackedInline):

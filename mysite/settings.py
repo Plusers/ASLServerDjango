@@ -20,7 +20,7 @@ SECRET_KEY = 'o2v3e=lf#fg%bumk1%(ba5n_yk-rm#r((c4r14p%z-7e7p$q#x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', False))
 
 ALLOWED_HOSTS = ['*']
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
@@ -116,20 +116,40 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
 MEDIA_URL = '/static/media/'
-STATIC_ROOT =  '/media/vladislav/3165-3432/ASLServerDjango/ASLServerDjango/mysite/polls/static/'
-MEDIA_ROOT = '/media/vladislav/3165-3432/ASLServerDjango/ASLServerDjango/mysite/polls/static/media/'
+STATIC_ROOT =  '/media/proger/3165-3432/ASLServerDjango(base version for school)/ASLServerDjango(v.6.0)/mysite/polls/static/'
+MEDIA_ROOT = '/media/proger/3165-3432/ASLServerDjango(base version for school)/ASLServerDjango(v.6.0)/mysite/polls/static/media/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/login/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
     '/qr-books/',
 ]
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+# if DEBUG == True:
+#     STATIC_URL = '/static/'
+#     MEDIA_URL = '/static/media/'
+#     STATIC_ROOT =  '/media/proger/3165-3432/ASLServerDjango(base version for school)/ASLServerDjango(v.6.0)/mysite/polls/static/'
+#     MEDIA_ROOT = '/media/proger/3165-3432/ASLServerDjango(base version for school)/ASLServerDjango(v.6.0)/mysite/polls/static/media/'
+#     LOGIN_URL = '/login/'
+#     LOGIN_REDIRECT_URL = '/login/'
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, "static"),
+#         '/qr-books/',
+#     ]
+# else:
+#     STATIC_URL = '/static/'
+#     MEDIA_URL = '/static/media/'
+#     STATIC_ROOT =  '/media/proger/3165-3432/ASLServerDjango(base version for school)/ASLServerDjango(v.6.0)/static/'
+#     MEDIA_ROOT = '/media/proger/3165-3432/ASLServerDjango(base version for school)/ASLServerDjango(v.6.0)/static/media/'
+#     LOGIN_URL = '/login/'
+#     LOGIN_REDIRECT_URL = '/login/'
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, "static"),
+#         '/qr-books/',
+#     ]
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'v.groschkov@yandex.ru'

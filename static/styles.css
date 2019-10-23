@@ -1,0 +1,123 @@
+body {
+  background: url(library_1.jpeg); 
+  padding-top: 40px;
+  padding-bottom: 40px;
+  color: #8A2BE2;
+  border-radius: 5px;
+}
+h1{
+  color: white;
+}
+
+.container {
+  background-color: #eee;
+  width: 500px;
+  height: 350px;
+  position: absolute;
+  top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.container_2 {
+  background-color: #eee;
+  width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.header {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+  border-bottom: 1px solid grey;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+html {
+  background: linear-gradient(90deg, #FF4E50 10%, #F9D423 90%);
+  overflow: hidden;
+  height: 100%;
+}
+
+.loader {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  top: 50%;
+  margin-top: -20px;
+  
+  &:before,
+  &:after {
+    content: "";
+    height: 40px;
+    width: 40px;
+    border: 8px solid rgba(255,255,255,.5);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+  }
+  
+  &:before {
+    animation: animate 2s infinite linear;
+  }
+  
+  &:after {
+    animation: animate2 2s infinite linear;
+  }
+}
+
+@keyframes animate {
+  100% {
+    transform: rotate(180deg) skew(360deg);
+  }
+}
+
+@keyframes animate2 {
+  100% {
+    transform: rotate(-180deg) skew(-360deg);
+  }
+}
+    

@@ -8,18 +8,18 @@ from django.forms.extras.widgets import SelectDateWidget
 import datetime
 
 class AuthForm(forms.Form):
-    username = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Логин')
-    password = forms.CharField(max_length=30, required=False, help_text='Optional.',label='Пароль')
+    username = forms.CharField(max_length=60, required=False, help_text='Optional.',label='Логин')
+    password = forms.CharField(max_length=60, required=False, help_text='Optional.',label='Пароль')
     class Meta:
         model = User
         fields = ('username','password')        
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(max_length=30, required=False,label='Логин*')
-    email = forms.EmailField(max_length=30, required=False,label='Почта*')
-    first_name = forms.CharField(max_length=30, required=False,label='Имя*')
-    last_name = forms.CharField(max_length=30, required=False,label='Фамилия*')
-    groups = forms.CharField(max_length=30, required=False,label='Класс*')
-    password1 = forms.CharField(widget=forms.PasswordInput,max_length=30, required=False,label='Пароль*')
+    username = forms.CharField(max_length=60, required=False,label='Логин*')
+    email = forms.EmailField(max_length=60, required=False,label='Почта*')
+    first_name = forms.CharField(max_length=60, required=False,label='Имя*')
+    last_name = forms.CharField(max_length=60, required=False,label='Фамилия*')
+    groups = forms.CharField(max_length=60, required=False,label='Класс*')
+    password1 = forms.CharField(widget=forms.PasswordInput,max_length=60, required=False,label='Пароль*')
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name','groups', 'password1', 'password2', )
@@ -30,7 +30,7 @@ class UserInfoForm(forms.ModelForm):
 BOOK=(('Учебник'),('Художественная литература'))
 class BooksForm(forms.ModelForm):
     name = forms.CharField(label='Название', max_length=100)
-    author = forms.CharField(label='Автор', max_length=100)
+    author = forms.CharField(label='Предмет', max_length=100)
     clas = forms.CharField(label='Класс', required=False, max_length=100)
     num_izd = forms.CharField(label='Номер издания', required=False, max_length=100)
     name_izd = forms.CharField(label='Название издания', required=False, max_length=100)

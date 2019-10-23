@@ -9,6 +9,7 @@ from django.conf import settings
 
 
 urlpatterns = [
+
     url(r'^$', RedirectView.as_view(pattern_name='books:menu'), name='index'), 
       
     url(r'^library/$', general_page, name='general-page'),
